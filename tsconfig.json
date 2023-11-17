@@ -2,7 +2,7 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "strictNullChecks": true,
-    "baseUrl": "src",
+    "baseUrl": "/Users/elliottmejia/WebstormProjects/astroship/src",
     "paths": {
       "@lib/*": [
         "lib/*"
@@ -21,7 +21,9 @@
       ],
       "@pages/*": [
         "pages/*"
-      ],
-    }
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
