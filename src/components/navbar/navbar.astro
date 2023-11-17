@@ -28,13 +28,16 @@ const menuitems = [
 ];
 ---
 
-<Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
-    <Astronav>
+<Container class="sticky top-0 z-40 mt-0 py-0 backdrop-blur-xl align-middle min-h-fit bg-primary h-fit bg-[#FFFFFF99] ">
+  <header class="flex flex-col lg:flex-row justify-between items-center my-0">
+    <Astronav class="items-center">
       <div class="flex w-full lg:w-auto items-center justify-between">
+        <a href="/" class="logo">
+          <img src="images/logo.svg" height="50px" width="auto" alt="Logo"></img>
+        </a>
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
+          ><span class="font-bold text-black">Honest</span><span
+            class="text-orange-400">Power</span
           >
         </a>
         <div class="block lg:hidden">
@@ -73,15 +76,14 @@ const menuitems = [
           }
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
+          <Link href="#" size="md" block>Get a quote</Link>
         </div>
       </MenuItems>
     </Astronav>
     <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+      <div class="hidden lg:flex items-center gap-4 button">
+        <!--<a href="#">log in</a>-->
+        <link href="#" size="md">Get a quote</link>
       </div>
     </div>
   </header>
