@@ -23,6 +23,9 @@
         "pages/*"
       ]
     },
+    "exclude": [
+      "@components/react/raw/*",
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
