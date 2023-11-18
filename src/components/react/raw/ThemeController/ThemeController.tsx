@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeController() {
-    const themes = ['honestChoco', 'honestOrange'];
+    const themes = ['honestLight', 'honestDark'];
 
     // Retrieve theme preference from local storage or default to prefersDarkMode
-    const initialPrefersToggleTheme = localStorage.getItem('prefersToggleTheme') === 'true';
+    const initialPrefersToggleTheme: boolean = localStorage.getItem('prefersThemeCustom') === 'true';
 
     const [prefersToggleTheme, setPrefersToggleTheme] = useState(initialPrefersToggleTheme);
 
@@ -12,9 +12,12 @@ export default function ThemeController() {
     useEffect(() => {
         const selectedTheme = prefersToggleTheme ? themes[0] : themes[1];
         document.documentElement.setAttribute("data-theme", selectedTheme);
+        console.log("LS", localStorage.getItem("prefersThemeCustom"));
+        console.log("Theme in component: ", selectedTheme);
+        console.log("Theme in markup: ", document.documentElement.getAttribute("data-theme"));
 
         // Save the theme preference in local storage
-        localStorage.setItem('prefersToggleTheme', prefersToggleTheme.toString());
+        localStorage.setItem('prefersThemeCustom', prefersToggleTheme.toString());
     }, [prefersToggleTheme]);
 
     // Handle theme change when the checkbox is clicked
