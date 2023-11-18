@@ -1,29 +1,106 @@
 ---
 // @ts-ignore
 import { Icon } from "astro-icon";
+import { isRenderTemplateResult } from "astro/dist/runtime/server/render/astro";
 const { title, data } = Astro.props;
+import Link from "./ui/link.astro";
+import ScriptTag from "@components/ScriptTag";
 ---
 
-{title &&
-  <div class="mt-16 md:mt-0">
-    <h2 class="text-4xl text-center lg:text-5xl font-bold lg:tracking-tight">
-      {title}
-    </h2>
-  </div>
+<style>
+  .feature-item {
+    transition: background-color 0.5s ease; /* Transition property */
+    /* Additional styling */
+    padding: 10px;
+    cursor: pointer;
+  }
+</style>
+
+{
+  title && (
+    <div class="mt-16 md:mt-0">
+      <h2 class="text-4xl text-center lg:text-5xl font-bold lg:tracking-tight">
+        {title}
+      </h2>
+    </div>
+  )
 }
 
-<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16 px-16">
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-2 px-16">
   {
-    data?.map((item) => (
-      <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
-          <Icon class="text-white" name={item.icon} />
+    data?.map((item, index) => (
+      <a
+        href={item.link}
+        class={`feature-item p-2 transition-colors duration-500`}>
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-black rounded-full p-2 w-8 h-8 shrink-0">
+            <Icon class="text-white" name={item.icon} />
+          </div>
+          <div class="feature-inner">
+            <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+            <p class="text-slate-800 mt-2 leading-relaxed">
+              {item.description}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
-        </div>
-      </div>
+      </a>
     ))
   }
 </div>
+
+<script>
+
+  const colorHexValues = [
+    'rgb(56, 161, 105)',
+    'rgb(66, 153, 225)',
+    'rgb(124, 58, 237)',
+    'rgb(220, 178, 24)',
+    'rgb(70, 240, 200)',
+  ];
+  const addAlpha = (rgb:string, alpha:number): string => {
+  if (rgb.length <= 0 || rgb === undefined) {
+    throw new Error(`${rgb} is undefined`);
+  }
+  const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+  if (!match) {
+    throw new Error(`Invalid RGB color format: ${rgb}`);
+  }
+  const [, r, g, b] = match;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+  let styleText: string = "";
+  colorHexValues.map((v, i) => {
+    if (v !== undefined) {
+      let bsVals = [
+        `box-shadow: ${addAlpha(v, 0.4)} -5px 5px, ${addAlpha(v, 0.3)} -10px 10px, ${addAlpha(v, 0.2)} -15px 15px, ${addAlpha(v, 0.1)} -20px 20px, ${addAlpha(v, 0.05)} -25px 25px;`,
+        `box-shadow: ${addAlpha(v, 0.4)} 0px 5px, ${addAlpha(v, 0.3)} 0px 10px, ${addAlpha(v, 0.2)} 0px 15px, ${addAlpha(v, 0.1)} 0px 20px, ${addAlpha(v, 0.05)} 0px 25px;`,
+        `box-shadow: ${addAlpha(v, 0.4)} 5px 5px, ${addAlpha(v, 0.3)} 10px 10px, ${addAlpha(v, 0.2)} 15px 15px, ${addAlpha(v, 0.1)} 20px 20px, ${addAlpha(v, 0.05)} 25px 25px;`,
+      ]
+      let cssPre: string = `
+        .features-color-${i}:hover{
+          ${bsVals[i % bsVals.length]}
+        }
+    `;
+      styleText += cssPre;
+    }
+  });
+  const styleElement = document.createElement("style");
+  styleElement.appendChild(document.createTextNode(styleText));
+  document.head.appendChild(styleElement);
+
+  const featureItems = document.querySelectorAll(".feature-item");
+
+  featureItems.forEach((item, index) => {
+    item.classList.add(`features-color-${index % 3}`);
+  });
+</script>
+
+
+<!--
+    title: "Saving the Planet",
+    description: "Kill the guilt and reduce your carbon footprint.",
+    icon: "ion:earth-sharp",
+    cta: "Learn More",
+    link: "services/residential"
+-->
