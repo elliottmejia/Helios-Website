@@ -3,6 +3,8 @@ import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
 import "@fontsource-variable/inter/index.css";
+import DarkModeToggle from "../components/react/converted/DarkModeToggle/DarkModeToggle.astro";
+
 
 export interface Props {
   title: string;
@@ -18,13 +20,21 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + window.location.toString()
+  ? title
   : "Honest Power";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
@@ -47,6 +57,20 @@ const makeTitle = title
         },
       }}
     />
+    <!--<script is:inline>// Check user's preferred color scheme-->
+    <!--let prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;-->
+    <!--let userPreferredTheme = prefersDarkTheme ? 'dark' : 'light';-->
+
+    <!--// Retrieve theme from local storage or use the user's preferred theme-->
+    <!--let storedTheme = localStorage.getItem("prefersTheme");-->
+    <!--let colorTheme = storedTheme || userPreferredTheme;-->
+
+    <!--// Apply the color theme to the HTML document-->
+    <!--document.documentElement.setAttribute('data-theme', colorTheme);-->
+
+    <!--// Log for demonstration purposes (you can remove this in your actual code)-->
+    <!--console.log(`User prefers ${userPreferredTheme} theme. Applied ${colorTheme} theme.`);;-->
+    <!--</script>-->
   </head>
   <body>
     <Navbar />
@@ -59,5 +83,6 @@ const makeTitle = title
         content-visibility: auto;
       }
     </style>
+    <DarkModeToggle/>
   </body>
 </html>

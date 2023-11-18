@@ -27,10 +27,10 @@ dependencies:
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.3)
   '@types/react':
-    specifier: ^18.0.21
+    specifier: ^18.2.37
     version: 18.2.37
   '@types/react-dom':
-    specifier: ^18.0.6
+    specifier: ^18.2.15
     version: 18.2.15
   astro:
     specifier: ^2.9.7
@@ -45,10 +45,10 @@ dependencies:
     specifier: ^0.7.5
     version: 0.7.5
   react:
-    specifier: ^18.0.0
+    specifier: ^18.2.0
     version: 18.2.0
   react-dom:
-    specifier: ^18.0.0
+    specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   sharp:
     specifier: ^0.32.4
