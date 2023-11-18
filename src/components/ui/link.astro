@@ -3,7 +3,7 @@ interface Props {
   href: string;
   size?: "md" | "lg";
   block?: boolean;
-  style?: "outline" | "primary" | "inverted" | "muted";
+  style?: "outline" | "primary" | "inverted" | "muted" | "rainbow";
   class?: string;
   [x: string]: any;
 }
@@ -26,10 +26,15 @@ const styles = {
   outline: "bg-white border-2 border-black hover:bg-gray-100 text-black ",
   primary: "bg-black text-white hover:bg-gray-800  border-2 border-transparent",
   inverted: "bg-white text-black   border-2 border-transparent",
-  muted: "bg-gray-100 hover:bg-gray-200   border-2 border-transparent",
+  muted: "bg-gray-100 hover:bg-gray-200 border-2 border-transparent",
+  rainbow: "bg-white text-black rainbow-shadow",
 };
 ---
-
+<style>
+  .rainbow-shadow:hover {
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;
+  }
+</style>
 <a
   href={href}
   {...rest}
