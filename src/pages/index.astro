@@ -1,17 +1,62 @@
 ---
+import Contactform from "@components/contactform.astro";
 import Container from "@components/container.astro";
 import Cta from "@components/cta.astro";
 import Features from "@components/features.astro";
 import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
+
+const services = [
+[ 
+  {
+    title: "Residential",
+    description:
+      "Harness the power of the sun to generate clean and efficient energy, reducing your dependence on traditional energy sources.",
+    icon: "bx:bxs-briefcase",
+  },
+  {
+    title: "Cost Savings and Financial Benefits",
+    description:
+      "Experience substantial cost savings over time with solar energy, coupled with financial incentives and reduced utility bills.",
+    icon: "bx:bxs-window-alt",
+  },
+  {
+    title: "Environmentally Friendly Living",
+    description:
+      "Embrace a greener lifestyle by significantly reducing your carbon footprint and contributing to a cleaner, more sustainable environment.",
+    icon: "bx:bxs-data",
+  },
+ ],
+  [
+  {
+    title: "Reliable and Low-Maintenance Solutions",
+    description:
+      "Enjoy hassle-free solar systems that require minimal maintenance, providing you with a reliable and long-lasting energy solution.",
+    icon: "bx:bxs-bot",
+  },
+  {
+    title: "Energy Independence",
+    description:
+      "Gain control over your energy future and reduce vulnerability to energy market fluctuations, ensuring a more stable and secure energy supply.",
+    icon: "bx:bxs-file-find",
+  },
+  {
+    title: "Increased Property Value",
+    description:
+      "Enhance the value of your property with the installation of solar panels, making it more attractive to eco-conscious buyers and investors.",
+    icon: "bx:bxs-user",
+  },
+ ]
+];
 ---
 
 <Layout title="">
   <Container>
     <Hero />
-    <Features />
-    <Logos />
+    <Features title="What you can expect" data={services[0]} />
     <Cta />
+    <Contactform title="Reach out, we don't bite."/>
+    <Features data={services[1]} />
   </Container>
 </Layout>
