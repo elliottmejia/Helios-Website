@@ -19,34 +19,49 @@ import { Icon } from "astro-icon";
       />
     </div>
     <div>
+      <h6>SERVING CUSTOMERS SINCE 2010</h6>
       <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-white">
-        Marketing website done with Astro
+        Let's get Honest About Solar
       </h1>
-      <p class="text-lg mt-4 text-slate-600 max-w-xl">
-        Astroship is a starter template for startups, marketing websites & landing pages.
-        <wbr />
-        Built with Astro.build and TailwindCSS. You can quickly create any website with this starter.
+      <p class="text-lg mt-4 text-white max-w-xl">
+          The future is electric — there’s never been a better time to take back control of your energy.
+        <!-- <wbr /> -->
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3">
         <Link
-            href="#"
-            href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
-            target="_blank"
+            href="/contact"
             class="flex gap-1 items-center justify-center"
             rel="noopener"
         >
-          <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" /> Download for Free
+          Get a quote
         </Link>
-        <Link
-            size="lg"
-            style="outline"
+        <a
+            id="learn-more-link"
+            href="/about"
             rel="noopener"
-            href="https://github.com/surjithctly/astroship"
-            class="flex gap-1 items-center justify-center"
-            target="_blank"
+            class="flex gap-1 items-center justify-center text-xl ml-5"
         >
-          <Icon class="text-black w-4 h-4" name="bx:bxl-github" /> GitHub Repo
-        </Link>
+           Learn more <Icon id="learn-more-right-arrow" class="text-white w-5 h-5 relative" name="maki:arrow" />
+        </a>
       </div>
     </div>
   </main>
+
+<script>
+const learnMoreLink  = document.getElementById("learn-more-link");
+const learnMoreArrow = document.getElementById("learn-more-right-arrow");
+
+learnMoreLink?.addEventListener("mouseenter",()=>{
+  learnMoreArrow?.classList.add("move-right");
+});
+
+learnMoreLink?.addEventListener("mouseleave",()=>{
+  learnMoreArrow?.classList.remove("move-right");
+});
+
+</script>
+<style>
+  .move-right{
+    transform:translateX(10px);
+  }
+</style>
