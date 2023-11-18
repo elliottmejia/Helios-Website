@@ -4,12 +4,20 @@ import './DarkModeToggle.css'
 ---
 
 <script>
-    const handleThemeToggle = () => {
-        localStorage.theme = (localStorage.theme == "dark") ? "light" : "dark";
-        console.log("switched to ", localStorage.theme, " mode");
-    }
+    const handleThemeToggle = (): void => {
+        const themes = ["dark", "light"];
+        const docElem = document.documentElement;
+        const theme = localStorage.theme;
+
+        localStorage.theme = theme === 'light' ? themes[0] : themes[1];
+        docElem.classList.remove(...themes);
+        docElem.classList.add(localStorage.theme);
+        console.log("Theme toggled to", theme === "light" ? themes[0] : themes[1]);
+        console.log("document displaying ", document.documentElement.classList)
+    };
+
     document.getElementById("themeSwitchInput")?.addEventListener('click', handleThemeToggle);
-</script>
+  </script>
 
 <div class="w-fit fixed right-4 bottom-4 z-50">
 <label class="theme-switch">
