@@ -5,8 +5,6 @@ const {title, class} = Astro.props;
 ---
 
 <section class="{class} mt-8">
-  <!-- To make this contact form work, create your free access key from https://web3forms.com/
-     Then you will get all form submissions in your email inbox. -->
   { title && 
   <h2 class="text-4xl text-center lg:text-5xl font-bold lg:tracking-tight">
     {title}
@@ -17,8 +15,7 @@ const {title, class} = Astro.props;
     id="contact-form"
     class="needs-validation mt-16 mx-auto px-32"
     novalidate>
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-    <!-- Create your free access key from https://web3forms.com/ -->
+    <input type="hidden" name="access_key" value="02c584b0-9111-41a3-b3aa-fbc849699c64E" />
     <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
     <div class="mb-5 flex nameholder w-100 gap-4 child:flex-grow child:w-100">
       <span>

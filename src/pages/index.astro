@@ -7,56 +7,58 @@ import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
 
-const services = [
-[ 
-  {
-    title: "Residential",
-    description:
-      "Harness the power of the sun to generate clean and efficient energy, reducing your dependence on traditional energy sources.",
-    icon: "bx:bxs-briefcase",
-  },
-  {
-    title: "Cost Savings and Financial Benefits",
-    description:
-      "Experience substantial cost savings over time with solar energy, coupled with financial incentives and reduced utility bills.",
-    icon: "bx:bxs-window-alt",
-  },
-  {
-    title: "Environmentally Friendly Living",
-    description:
-      "Embrace a greener lifestyle by significantly reducing your carbon footprint and contributing to a cleaner, more sustainable environment.",
-    icon: "bx:bxs-data",
-  },
- ],
-  [
-  {
-    title: "Reliable and Low-Maintenance Solutions",
-    description:
-      "Enjoy hassle-free solar systems that require minimal maintenance, providing you with a reliable and long-lasting energy solution.",
-    icon: "bx:bxs-bot",
-  },
-  {
-    title: "Energy Independence",
-    description:
-      "Gain control over your energy future and reduce vulnerability to energy market fluctuations, ensuring a more stable and secure energy supply.",
-    icon: "bx:bxs-file-find",
-  },
-  {
-    title: "Increased Property Value",
-    description:
-      "Enhance the value of your property with the installation of solar panels, making it more attractive to eco-conscious buyers and investors.",
-    icon: "bx:bxs-user",
-  },
- ]
-];
+const featureCopy = {
+  why: [
+    {
+      title: "Saving the Planet",
+      description: "Kill the guilt and reduce your carbon footprint.",
+      icon: "ion:earth-sharp",
+      cta: "Learn More",
+      link: "services/residential"
+    },
+    {
+      title: "Financial Freedom",
+      description: "Tax credits, lower bills, less stress.",
+      icon: "tdesign:money",
+      cta: "Learn more",
+      link: "services/residential"
+    },
+    {
+      title: "Lock in your costs",
+      description: "The cost of energy is only rising. Keep your price low for years to come.",
+      icon: "ant-design:stock-outlined",
+      cta: "Learn more",
+      link: "services/residential"
+    },
+
+  ],
+  who: [
+    {
+      title: "Reliable and Low-Maintenance Solutions",
+      description: "Enjoy hassle-free solar systems that require minimal maintenance, providing you with a reliable and long-lasting energy solution.",
+      icon: "bx:bxs-bot",
+    },
+    {
+      title: "Energy Independence",
+      description: "Gain control over your energy future and reduce vulnerability to energy market fluctuations, ensuring a more stable and secure energy supply.",
+      icon: "bx:bxs-file-find",
+    },
+    {
+      title: "Increased Property Value",
+      description: "Enhance the value of your property with the installation of solar panels, making it more attractive to eco-conscious buyers and investors.",
+      icon: "bx:bxs-user",
+    },
+  ],
+};
+
 ---
 
 <Layout title="">
   <Container>
     <Hero />
-    <Features title="What you can expect" data={services[0]} />
+    <Features title="Why Solar?" data={featureCopy.why} />
     <Cta />
     <Contactform title="Reach out, we don't bite."/>
-    <Features data={services[1]} />
+    <Features title="Who we serve" data={featureCopy.who} />
   </Container>
 </Layout>
