@@ -1,7 +1,6 @@
 ---
 import PagebodyLayout from "@layouts/PagebodyLayout.astro";
 import Commercial from "@pages/services/commercial.astro";
-import Accordion from "@components/react/converted/Accordion/Accordion";
 // solo means the body is alone
 
 const { solo } = Astro.props;
@@ -21,6 +20,5 @@ const AccordionData = [
 ---
 
 <PagebodyLayout title={title} solo={solo}>
-  <Accordion title="Title works" data={AccordionData} />
   <div></div>
 </PagebodyLayout>

@@ -19,7 +19,6 @@ export default function AccordionItem (props: Props) {
             <div className="rc-accordion-header ">
                 <div className={`rc-accordion-toggle p-3  pl-8 ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
                     <h5 className="rc-accordion-title">{header}</h5>
-                    <i className="fa fa-chevron-down rc-accordion-icon"></i>
                 </div>
             </div>
             <div ref={contentEl} className={`rc-collapse ${active === id ? 'show' : ''}`} style={

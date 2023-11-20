@@ -1,11 +1,10 @@
 import { useState } from "react";
-import AccordionItem from "./AccordionItem.jsx";
+import AccordionItem from "./AccordionItem.js";
 
 interface Props {
     title: string;
     data: Array<{
         header: string;
-        id: string;
         text: string;
     }>;
 }
