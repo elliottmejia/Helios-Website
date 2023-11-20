@@ -1,12 +1,18 @@
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 import './Accordion.css';
 
+interface Props {
+    item: object;
+    active: any;
+    handleToggle: any;
+}
 
-export default function AccordionItem (props) {
-    const contentEl = useRef();
-    let handleToggle, active, faq;
-    ({handleToggle, active, faq} = props);
-    const { header, id, text } = faq;
+
+export default function AccordionItem (props: Props) {
+    const contentEl: MutableRefObject<any> = useRef();
+    let handleToggle, active, item;
+    ({handleToggle, active, item} = props);
+    const { header, id, text } = item;
 
     return (
         <div className="rc-accordion-card ">
@@ -28,5 +34,3 @@ export default function AccordionItem (props) {
         </div>
     )
 }
-
-

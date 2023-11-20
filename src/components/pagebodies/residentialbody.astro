@@ -1,0 +1,11 @@
+---
+// solo means the body is alone
+const { solo } = Astro.props;
+const title = "Residential";
+
+import PagebodyLayout from "@layouts/PagebodyLayout.astro";
+---
+
+<PagebodyLayout title={title} solo={solo}>
+  <div></div>
+</PagebodyLayout>

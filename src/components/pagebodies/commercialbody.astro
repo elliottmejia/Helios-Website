@@ -1,0 +1,26 @@
+---
+import PagebodyLayout from "@layouts/PagebodyLayout.astro";
+import Commercial from "@pages/services/commercial.astro";
+import Accordion from "@components/react/converted/Accordion/Accordion";
+// solo means the body is alone
+
+const { solo } = Astro.props;
+const title = "Commercial";
+const AccordionData = [
+  {
+    header: "Foo",
+    id: "1",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
+  },
+  {
+    header: "Foo",
+    id: "2",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
+  },
+];
+---
+
+<PagebodyLayout title={title} solo={solo}>
+  <Accordion title="SAMPLE ACCORDION COMMERCIAL" data={AccordionData} />
+  <div></div>
+</PagebodyLayout>
