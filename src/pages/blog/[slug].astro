@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 
+
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -10,11 +11,19 @@ export async function getStaticPaths() {
     params: { slug: entry.slug },
     props: { entry },
   }));
+
 }
+
 
 // Get the entry directly from the prop on render
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const src = entry.data.image.src;
+
+const imagePath =
+src.startsWith('http') ? src :
+'../../src/assets/blogimages/' + src;
 ---
 
 <Layout title={entry.data.title}>
@@ -27,6 +36,8 @@ const { Content } = await entry.render();
         class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
         {entry.data.title}
       </h1>
+
+      <img src={imagePath} alt={entry.data.image.alt} height="400px" width="500px"class="rounded-md my-6 h-full w-full" />
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
         <span class="text-gray-400">
           {entry.data.author}

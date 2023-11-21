@@ -21,18 +21,19 @@ publishedBlogEntries.sort(function (a, b) {
     <Sectionhead>
       <Fragment slot="title">Our Blog</Fragment>
       <Fragment slot="desc">
-        We write about building startups and thoughts going on our mind.
+        We write about solar power's impact on you and the world that we live in. 
       </Fragment>
     </Sectionhead>
     <main class="mt-16">
       <ul class="grid gap-16 max-w-4xl mx-auto">
         {
           publishedBlogEntries.map((blogPostEntry, index) => (
+
             <li>
               <a href={`/blog/${blogPostEntry.slug}`}>
                 <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
                   <Picture
-                    src={blogPostEntry.data.image.src}
+                    src={blogPostEntry.data.image.src.startsWith("http") ? blogPostEntry.data.image.src : `/../../src/assets/blogimages/${blogPostEntry.data.image.src}`}
                     alt={blogPostEntry.data.image.alt}
                     sizes="(max-width: 800px) 100vw, 800px"
                     widths={[200, 400, 800]}
