@@ -9,11 +9,11 @@ import { Icon } from "astro-icon";
 const { links, class: className, childClass } = Astro.props;
 ---
 
-<div class={`flex flex-row gap-2 ${className}`}>
+<div class={`flex flex-row justify-end gap-2 relative bottom-0 right-0 items-end ${className}`}>
   {
     links &&
       links.map((item) => (
-        <a href={item.url} class={` ${childClass}`}>
+        <a href={item.url} target="_blank" class={`h-8 w-8 ${childClass}`}>
           <Icon name={item.icon} class="social-icon" />
         </a>
       ))

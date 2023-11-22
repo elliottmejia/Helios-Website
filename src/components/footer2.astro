@@ -1,4 +1,5 @@
 ---
+import SocialButtons from "./ui/socialbuttons.astro";
 const CONTENT = [
   [
     { title: "Explore", url: "", isHeading: true },
@@ -54,4 +55,9 @@ const CONTENT = [
   >
     Copyright ©{new Date().getFullYear()} Honest Power. All rights reserved.
   </p>
+  <SocialButtons links={[
+    { url: "https://www.instagram.com/honestpowersolar_/", icon: "ri:instagram-fill"},
+  ]}, class="relative bottom-0 right-0 pb-2 pr-2 text-white"
+  childClass="text-white stroke-white fill-white"
+  />
 </footer>
