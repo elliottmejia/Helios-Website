@@ -7,6 +7,7 @@ const CONTENT = [
     { title: "About", url: "/about" },
     { title: "Services", url: "/services" },
     { title: "Contact", url: "/contact" },
+    {title: "Utility API", url: "/utility"},
   ],
   [
     { title: "Legal", url: "", isHeading: true },
@@ -35,7 +36,7 @@ const CONTENT = [
                     <li>
                       <a
                         class="text-sm text-zinc-300 hover:text-zinc-100"
-                        href="#"
+                        href={item.url}
                       >
                         {item.title}
                       </a>
