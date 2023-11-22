@@ -1,0 +1,19 @@
+---
+interface ImportMetaEnv {
+  readonly UTILITY_API_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+const baseURL = "https://utilityapi.com/authorize/myhonestpower/";
+// When import.meta.env.SSR === false
+const data = fetch(baseURL + import.meta.env.UTILITY_API_KEY).then((res) =>
+  res.json()
+);
+console.log(data);
+---
+
+// Execute the curl request separately // Replace 'API_TOKEN_HERE' with your
+actual API token // Run this command in your terminal // curl -X POST -H
+'Authorization: Bearer API_TOKEN_HERE' 'https://utilityapi.com/api/v2/forms'

@@ -1,0 +1,35 @@
+---
+import UtilityAPI from "@components/UtilityAPI.astro";
+import Layout from "@layouts/Layout.astro";
+const API_LINK = "https://utilityapi.com/authorize/myhonestpower";
+---
+
+<Layout title="Utility">
+  <div
+    class="mx-auto mt-8 w-full text-center flex flex-col justify-center"
+    style="height:700px;"
+  >
+    <div class="text flex flex-col justify-center w-[50%] mx-auto">
+      <h1 class="text-3xl">Get your utility bill</h1>
+      <h3 class="text-xl text-gray-500 mt-2 mb-4">
+        Just add your information below and you'll recieve the information in
+        your inbox.
+      </h3>
+      <div class="w-96 self-center">
+        <h3 class="text-xs text-gray-500 mt-2 mb-4">
+          We do not store any of your sensitive information. Utility API is a
+          third party service that we use to get your utility bill. You can find
+          more information about Utility API <span
+            ><a class="text-purple-400" href="https://utilityapi.com/">here.</a
+            ></span
+          >
+        </h3>
+      </div>
+    </div>
+    <iframe
+      class="relative top-4 mt-0"
+      src={API_LINK}
+      style="width:500px;height:700px; align-self:center; margin-top:0px; position:relative; top:-20px"
+    ></iframe>
+  </div>
+</Layout>
