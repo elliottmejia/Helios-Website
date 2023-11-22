@@ -1,0 +1,21 @@
+---
+interface Props {
+  links: Array<{ url: string; icon: string }>;
+  class?: string | "";
+  childClass?: string | "";
+}
+import { Icon } from "astro-icon";
+
+const { links, class: className, childClass } = Astro.props;
+---
+
+<div class={`flex flex-row gap-2 ${className}`}>
+  {
+    links &&
+      links.map((item) => (
+        <a href={item.url} class={` ${childClass}`}>
+          <Icon name={item.icon} class="social-icon" />
+        </a>
+      ))
+  }
+</div>
