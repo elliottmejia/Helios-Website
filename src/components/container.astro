@@ -1,8 +1,12 @@
 ---
+interface Props {
+  className?: string;
+  id?: string;
+}
 
-const { class: className, id: id} = Astro.props;
+const { className, id } :Props = Astro.props;
+let cn = "debug working, props are not"
 ---
-
-<div class:list={["max-w-screen-xl mx-auto", className]} id={id}>
+<div class={`max-w-screen-xl mx-auto container ${className || ""}`} id={id || ""}>
   <slot />
 </div>

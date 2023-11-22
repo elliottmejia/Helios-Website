@@ -1,21 +1,23 @@
 ---
 interface Props {
   title: string;
+  viewTitle?: boolean | false;
   solo?: boolean | false;
+  class?: string;
 }
-const { title, solo }: Props = Astro.props;
+const { title, viewTitle, solo, class: className}: Props = Astro.props;
 import Container from "@components/container.astro";
 import Contactform from "@components/contactform.astro";
 ---
 
-<Container class="py-16" id={`${title.toLowerCase()}-container`}>
-  {
-    title && solo ? (
-      <h1 class="text-center mx-auto text-3xl font-bold">{title}</h1>
-    ) : (
-      <h2 class="text-center mx-auto text-3xl font-bold">{title}</h2>
-    )
-  }
+<Container className={`${className} py-16`} id={ `${title.toLowerCase()}-container `}>
+  <!-- { viewTitle !== false && title  &&
+        solo ? (
+        <h1 class="text-center mx-auto text-3xl font-bold">{title}</h1>
+      ) : (
+        <h2 class="text-center mx-auto text-3xl font-bold">{title}</h2>
+      )
+  } -->
   <slot />
-  {solo && <Contactform />}
+  {solo && <Contactform title="Contact us"/>}
 </Container>
