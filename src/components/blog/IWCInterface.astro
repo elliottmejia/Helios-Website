@@ -1,0 +1,97 @@
+---
+// This component takes in a link
+import ImageWithCredit from "@components/blog/imagewithcredit.astro";
+
+interface Props {
+  filename?: string;
+  src?: string;
+
+  anchorTag: string;
+  alt?: string | "";
+  height?: string | "400px";
+  creditCopy?: string | "Photo by";
+}
+
+const { filename, src, anchorTag, height, creditCopy}: Props = Astro.props;
+let {alt}:Props = Astro.props;
+
+
+if (src && filename) {
+  throw new Error(
+    "You can't have both a filename and a src. Please choose one."
+  );
+}
+
+var fullPath: string = "";
+if (filename) {
+  fullPath = "@assets/blogimages/" + filename;
+} else if (src) {
+  fullPath = src;
+}
+
+
+let links: string[] = ["", ""];
+let author: string = "";
+let source: string = "";
+let hrefCount: number = 0;
+let parseIndex: number = 0;
+
+for (let i = 0; i < anchorTag.length; i++) {
+  if (
+    // prettier-ignore
+    anchorTag[i]     === "h" &&
+    anchorTag[i + 1] === "r" &&
+    anchorTag[i + 2] === "e" &&
+    anchorTag[i + 3] === "f"
+  ) {
+    if (hrefCount > 1) {
+      throw new Error(
+        "Out of bounds error on hrefCount > Links[]. Runaway assignment of hrefs."
+      );
+    }
+    links[hrefCount] = captureQuote(i);
+    if(hrefCount === 1) {
+        author = captureName(parseIndex);
+    } else {
+        source = captureName(parseIndex);
+    }
+    hrefCount++;
+  }
+}
+if (alt === undefined) alt = "Solar blog image by " + author;
+
+function captureQuote(i: number): string {
+  // To be assigned to the links array.
+  // Writes to buffer with the characters between the quotes.
+  let buffer: string = "";
+  let j: number = i + 6;
+  while (anchorTag[j] !== '"') {
+    buffer += anchorTag[j];
+    j++;
+  }
+  parseIndex = j;
+  return buffer;
+}
+function captureName(i: number): string {
+  // To be assigned to the author and source strings.
+  // Writes to buffer with the characters between the > and the <.
+  let buffer: string = "";
+  let j: number = i + 1;
+  while (anchorTag[j] !== "<") {
+    buffer += anchorTag[j];
+    j++;
+  }
+  return buffer;
+}
+
+---
+
+<ImageWithCredit
+    imgLink={fullPath}
+    imgAlt={alt}
+    height={height || "400px"}
+    creditLink={links[1]}
+    creditCopy={creditCopy || "Photo by"}
+    creditName={author}
+    creditSource={source}
+/>
