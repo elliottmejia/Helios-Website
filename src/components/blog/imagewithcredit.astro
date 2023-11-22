@@ -1,0 +1,48 @@
+---
+interface Props {
+  imgLink: string;
+  imgAlt: string;
+  height: string;
+  creditLink?: string;
+  creditCopy?: string;
+  creditName?: string;
+  class?: string;
+  target?: string | "_blank";
+  creditSource?: string;
+}
+
+let {
+  imgLink,
+  imgAlt,
+  creditLink,
+  creditCopy,
+  height,
+  class: className,
+  target,
+  creditName,
+  creditSource,
+}: Props = Astro.props;
+---
+
+<div
+  class={` mx-auto flex-col my-16 ${className}`}
+  style={`height: ${height}; width: auto; display: flex;  margin: 0 auto; justify-content:center;`}
+>
+  <img
+    src={imgLink}
+    alt={imgAlt}
+    height={height}
+    loading="lazy"
+    style={`height: ${height};max-height: 100%; max-width: 100%; object-fit:cover; margin-bottom:0px;`}
+  />
+  <credit
+    style="font-size: 14px; color: #888; margin-top: 8px; display: block; text-align: center;"
+    >{creditCopy}
+    <span
+      ><a href={creditLink} rel="nofollow" target={target} class="text-[#888]"
+        >{creditName && creditName + " /"}</a
+      >
+    </span>
+    {creditSource}</credit
+  >
+</div>
