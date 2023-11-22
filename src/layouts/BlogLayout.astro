@@ -2,10 +2,14 @@
 import Container from "@components/container.astro";
 import { getFormattedDate } from "@utils/all";
 import Layout from "./Layout.astro";
+import Contactform from "@components/contactform.astro";
 
 const { frontmatter } = Astro.props;
 
 ---
+<script define:vars{frontmatter}>
+  console.log(frontmatter);
+</script>
 
 <Layout title={frontmatter.title}>
   <Container>
@@ -39,6 +43,7 @@ const { frontmatter } = Astro.props;
     <div class="mx-auto prose prose-lg mt-6">
       <slot />
     </div>
+
     <div class="text-center mt-8">
       <a
         href="/blog"

@@ -1,6 +1,13 @@
 ---
+interface Props {
+  title: string;
+  subtitle?: string | "";
+  cta: string;
+  href: string;
+}
+
 import Link from "./ui/link.astro";
-const {title, subtitle, cta, href} = Astro.props;
+const {title, subtitle, cta, href}: Props = Astro.props;
 ---
 
 <div

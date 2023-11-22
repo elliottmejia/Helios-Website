@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-
+import Cta from "@components/cta.astro";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 
 // Get the entry directly from the prop on render
-const { entry } = Astro.props;
+const { entry, contact } = Astro.props;
 const { Content } = await entry.render();
 
 const src = entry.data.image.src;
@@ -62,6 +62,12 @@ src.startsWith('http') ? src :
     <div class="mx-auto prose prose-lg mt-6 max-w-3xl">
       <Content />
     </div>
+    <Cta title="Get a free solar consultation"
+        subtitle="We'll help you find the best solar solution for your home."  
+        cta="Get Started"
+        href="/contact"
+   />
+
     <div class="text-center mt-8">
       <a
         href="/blog"
