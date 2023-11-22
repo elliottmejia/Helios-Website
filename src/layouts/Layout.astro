@@ -1,16 +1,14 @@
 ---
 import { SEO } from "astro-seo";
-import Footer from "@components/footer.astro";
+import Footer from "@components/react/converted/FooterDaisy/Footer";
 import Navbar from "@components/navbar/navbar.astro";
 import "@fontsource-variable/inter/index.css";
-import DarkModeToggle from "../components/react/converted/DarkModeToggle/DarkModeToggle.astro";
+// import DarkModeToggle from "../components/react/converted/DarkModeToggle/DarkModeToggle.astro";
 import { ViewTransitions } from "astro:transitions";
-
 
 export interface Props {
   title: string;
 }
-
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
