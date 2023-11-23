@@ -10,13 +10,16 @@ const images: ImageType[] = await Astro.glob("/src/assets/brands/*").then(
     return files.map((file) => file.default);
   }
 );
-console.log(images);
+const linkData:string[][] = [
+  ["Mosaic", "https://joinmosiac.com/"],
+  []
+
+] 
+
+
 ---
 
 <h2 class="text-4xl font-bold text-center mt-8 my-4">Our partners</h2>
-<h3 class="text-xl text-gray-400 text-center mx-auto ">We are proud to be partnered with:</h3>
-
-
 
 <div class="h-100 w-50">
   <div
