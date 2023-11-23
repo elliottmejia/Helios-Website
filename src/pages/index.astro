@@ -6,6 +6,7 @@ import Features from "@components/features.astro";
 import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
+import Brandcard from "@components/brandcard.astro";
 
 const featureCopy = {
   why: [
@@ -60,5 +61,8 @@ const featureCopy = {
     />
     <Contactform title="Reach out, we don't bite."/>
     <Features title="Let your home or business bask in the sun." data={featureCopy.who} />
+
+    <Brandcard />
   </Container>
+
 </Layout>
