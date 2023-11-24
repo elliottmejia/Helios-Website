@@ -5,6 +5,9 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
+import vercel from "@astrojs/vercel/serverless";
+import vercelEdge from "@astrojs/vercel/edge";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://myhonestpower.com",
@@ -20,4 +23,6 @@ export default defineConfig({
     sitemap(),
     react(),
   ],
+  output: "server",
+  adapter: verceledge(),
 });
