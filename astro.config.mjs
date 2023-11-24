@@ -5,7 +5,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
-import vercel from "@astrojs/vercel/serverless";
 import vercelEdge from "@astrojs/vercel/edge";
 
 // https://astro.build/config
@@ -24,5 +23,5 @@ export default defineConfig({
     react(),
   ],
   output: "server",
-  adapter: verceledge(),
+  adapter: vercelEdge(),
 });
