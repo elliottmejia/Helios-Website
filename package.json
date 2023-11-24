@@ -1,13 +1,13 @@
 {
   "name": "astroship",
   "type": "module",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "build:node": "npx astro build ./ --node --root dist",
+    "build:node": "npx astro build ./ --node ",
     "preview": "astro preview",
     "astro": "astro"
   },
