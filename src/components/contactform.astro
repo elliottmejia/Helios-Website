@@ -35,6 +35,7 @@ const { title, className, solo, body}: Props = Astro.props;
     id="contact-form"
     class="needs-validation mt-16 mx-auto px-32"
     novalidate
+    client:only
   >
     <input
       type="hidden"
