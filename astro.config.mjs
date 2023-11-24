@@ -15,7 +15,6 @@ if (process.argv[3] === "--node" || process.argv[4] === "--node") {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://myhonestpower.com",
   integrations: [tailwind(), mdx(), sitemap(), react()],
   output: "server",
   adapter: adapter,
