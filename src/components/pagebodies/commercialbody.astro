@@ -28,7 +28,9 @@ import RoofImage from "@assets/honestpower/commercial-roof.jpeg";
 import Icon from "astro-icon";
 ---
 
-<PagebodyLayout title={title} viewTitle={false} solo={solo} class="pt-0">
+
+
+<PagebodyLayout title={title} viewTitle={false} solo={solo} class="pt-0" pagetype="commercial">
   {
     solo && (
       <div class="relative">
@@ -44,9 +46,9 @@ import Icon from "astro-icon";
           <h6 class="text-xl font-bold text-gray-100">
             Honest Power - Commercial
           </h6>
-          <h2 class="text-5xl font-bold text-white">
+          <h1 class="text-5xl font-bold text-white">
             Custom Commercial Solar Panels
-          </h2>
+          </h1>
           <h5 class="text-2xl font-bold text-gray-100">at an affordable price</h5>
         </div>
       </div>
@@ -56,7 +58,9 @@ import Icon from "astro-icon";
   heading="What if solar was affordable for your business?" 
   alt="Warehouse with solar panels drone shot" 
   body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space." 
-  icon="grommet-icons:solaris" />
+  icon="grommet-icons:solaris"
+  imgpos="left" 
+  />
 
   <FeatureList 
     title="Benefits of Commercial Solar Panels"

@@ -4,10 +4,23 @@ interface Props {
   viewTitle?: boolean | false;
   solo?: boolean | false;
   class?: string;
+  pagetype?: string;
 }
-const { title, viewTitle, solo, class: className}: Props = Astro.props;
+const { title, viewTitle, solo, class: className, pagetype}: Props = Astro.props;
 import Container from "@components/container.astro";
 import Contactform from "@components/contactform.astro";
+
+
+function switchBody(pagetype:string){
+  switch (pagetype){
+    case "residential":
+      return "Let's get started on taking your home to the 23rd century.";
+    case "commercial":
+      return "Invest in your business... by spending less on energy.";
+    default:
+      return "We are here to help you with your project or answer any questions you may have.";
+  }
+}
 ---
 
 <Container className={`${className} py-16`} id={ `${title.toLowerCase()}-container `}>
@@ -19,5 +32,15 @@ import Contactform from "@components/contactform.astro";
       )
   } -->
   <slot />
-  {solo && <Contactform title="Contact us"/>}
+  {solo && 
+    <Contactform title="Contact us for more information"
+      body = {pagetype &&
+        switchBody(pagetype)
+      }
+      />
+  }
 </Container>
+
+<script>
+
+</script>

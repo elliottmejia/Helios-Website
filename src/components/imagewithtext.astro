@@ -8,23 +8,28 @@ interface Props {
   body: string;
   icon: string;
   class?: string;
+  imgpos: string | "right";
+  width?: string;
+  height?: string;
 }
-const { img, alt, heading, body, icon, class: classList }: Props = Astro.props;
+const { img, alt, heading, body, icon, class: classList , imgpos, width, height}: Props = Astro.props;
 import { Icon } from "astro-icon";
 ---
 
 <section
   class={`py-16 px-16 flex flex-col gap-4 md:flex-row items-center md:space-x-6 ${classList}`}
 >
+{imgpos === "left" && (
   <img
     src={img.src}
-    width="500"
-    height="500"
+    width={width || "400px"}
+    height={height || "400px"}
     loading="lazy"
     alt={alt}
-    class="w-full md:w-1/2 object-cover rounded-md hidden md:block"
+    class=" md:w-1/2 object-cover rounded-md hidden md:block"
     style="aspect-ratio: 500 / 500; object-fit: cover;"
   />
+)}
   <div class="mt-6 md:mt-0 w-full md:w-1/2 space-y-4">
     <div class="flex items-center space-x-2">
       {icon && <Icon class="h-8 md:h-12" name={icon} />}
@@ -44,13 +49,29 @@ import { Icon } from "astro-icon";
       )
     }
   </div>
-  <img
-    src={img.src}
-    width="500"
-    height="500"
-    loading="lazy"
-    alt={alt}
-    class="w-full md:w-1/2 object-cover mt-8 rounded-md block md:hidden"
-    style="aspect-ratio: 500 / 500; object-fit: cover;"
-  />
+  {imgpos === "right" && (
+    <img
+      src={img.src}
+      width={width || "400px"}
+      height={height || "400px"}
+      loading="lazy"
+      alt={alt}
+      class=" md:w-1/2 object-cover rounded-md block"
+      style="aspect-ratio: 500 / 500; object-fit: cover;" 
+    />
+  )}
+
+  {imgpos === "left" && (
+    <img
+      src={img.src}
+      data-position="left"
+      width={width || "400px"}
+      height={height || "400px"}
+      loading="lazy"
+      alt={alt}
+      class=" md:w-1/2 object-cover mt-8 rounded-md block md:hidden"
+      style="aspect-ratio: 500 / 500; object-fit: cover;"
+    />
+  )}
+
 </section>
