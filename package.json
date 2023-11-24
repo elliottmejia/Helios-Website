@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "build:node": "npx astro build ./ --node ",
+    "build:node": "rm ./pnpm-lock.yaml && npx astro build ./ --node ",
     "preview": "astro preview",
     "astro": "astro"
   },
