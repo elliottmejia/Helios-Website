@@ -7,8 +7,8 @@ interface Props {
   pagetype?: string;
 }
 const { title, viewTitle, solo, class: className, pagetype}: Props = Astro.props;
-import Container from "@components/container.astro";
-import Contactform from "@components/contactform.astro";
+import Container from "../components/container.astro";
+import Contactform from "../components/contactform.astro";
 
 
 function switchBody(pagetype:string){

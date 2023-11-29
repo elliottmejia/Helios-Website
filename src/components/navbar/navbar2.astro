@@ -79,7 +79,7 @@ const menuitems:itemtype[] = [
       <ul class="flex flex-col lg:flex-row lg:gap-3">
         {menuitems.map((item:itemtype) => (
           item.children && item.children.length > 0 ? (
-            <li class="relative" key={item.title}>
+            <li class="relative" data-key={item.title}>
               <menu class="astronav-dropdown group" aria-expanded="false">
                 <button class="flex items-center gap-1 w-full lg:w-auto lg:px-3 py-2 text-base-content hover:text-gray-900">
                   <span>{item.title}</span>
@@ -92,7 +92,7 @@ const menuitems:itemtype[] = [
                   <div class="lg:absolute w-full lg:w-48 z-10 lg:left-0 origin-top-left">
                     <div class="px-3 lg:py-2 lg:bg-white lg:rounded-md lg:shadow lg:border flex flex-col">
                       {item.children.map((child) => (
-                        <a href={child.path} class="py-1 text-gray-600 hover:text-gray-900" key={child.title}>
+                        <a href={child.path} class="py-1 text-gray-600 hover:text-gray-900" data-key={child.title}>
                           {child.title}
                         </a>
                       ))}
@@ -103,7 +103,7 @@ const menuitems:itemtype[] = [
               </menu>
             </li>
           ) : (
-            <li key={item.title}>
+            <li data-key={item.title}>
               <a href={item.path} class="flex lg:px-3 py-2 items-center hover:text-gray-900">
                 <span>{item.title}</span>
               </a>

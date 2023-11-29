@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/container.astro";
+import Sectionhead from "../components/sectionhead.astro";
 
 // Filter team entries with 'draft: false' & date before current date
 const publishedTeamMembers = await getCollection("team", ({ data }) => {
@@ -41,7 +41,6 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
                 alt={teamMemberEntry.data.avatar.alt}
                 sizes="(max-width: 800px) 100vw, 400px"
                 widths={[200, 400]}
-                aspectRatio="1:1"
                 background="#ffffff"
                 fit="cover"
                 position="center"
