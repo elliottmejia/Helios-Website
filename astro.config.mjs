@@ -4,20 +4,11 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
-import node from "@astrojs/node";
 import vercel from "@astrojs/vercel/serverless";
-
-let adapter = vercel();
-
-if (process.argv[3] === "--node" || process.argv[4] === "--node") {
-  adapter = node({ mode: "standalone" });
-}
 
 // https://astro.build/config
 export default defineConfig({
-  domain: "honestpower.vercel.app",
-  outdir: "dist",
-  integrations: [tailwind(), mdx(), sitemap(), react()],
+  integrations: [tailwind(), mdx(), react()],
   output: "server",
-  adapter: adapter,
+  adapter: vercel(),
 });
