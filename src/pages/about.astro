@@ -41,10 +41,7 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
                 alt={teamMemberEntry.data.avatar.alt}
                 sizes="(max-width: 800px) 100vw, 400px"
                 widths={[200, 400]}
-                background="#ffffff"
-                fit="cover"
-                position="center"
-                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl"
+                class:list="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl"
               />
             </div>
 

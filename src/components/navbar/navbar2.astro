@@ -255,7 +255,7 @@ const menuitems:itemtype[] = [
       const navToggle = document.getElementById("astronav-menu");
       const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
 
-      const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+      const MenuIcons:any = navToggle?.querySelectorAll(".astronav-toggle");
 
       navLink &&
       navLink.forEach((item:HTMLElement) => {
