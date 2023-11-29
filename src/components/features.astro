@@ -1,10 +1,7 @@
 ---
 // @ts-ignore
 import { Icon } from "astro-icon";
-import { isRenderTemplateResult } from "astro/dist/runtime/server/render/astro";
 const { title, data } = Astro.props;
-import Link from "./ui/link.astro";
-import ScriptTag from "@components/ScriptTag";
 // icons found here: https://github.com/iconify/icon-sets/blob/master/collections.md
 ---
 
@@ -30,7 +27,7 @@ import ScriptTag from "@components/ScriptTag";
 
 <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-2 px-16">
   {
-    data?.map((item, index) => (
+    data?.map((item:any, index:number) => (
       <a
         href={item.link}
         class={`feature-item p-2 transition-colors duration-500`}>
@@ -134,20 +131,10 @@ const featureItems = document.querySelectorAll(".feature-item");
 
   featureItems.forEach((item, index) => {
     item.classList.add(`features-color-${index %
-      6 // current colorHexValues.length === 6
-      // UNCOMMENT DURING GENERATION, MODULO KEEPS SELECTION IN RANGE
-      // colorHexValues.length
+      6 
     }`);
   });
 
 </script>
 
-
-<!--
-    title: "Saving the Planet",
-    description: "Kill the guilt and reduce your carbon footprint.",
-    icon: "ion:earth-sharp",
-    cta: "Learn More",
-    link: "services/residential"
--->
 </section>

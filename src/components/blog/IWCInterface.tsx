@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ImageWithCredit from '@components/blog/ImageWithCredit.astro';
+import ImageWithCredit from '../blog/imagewithcredit.astro';
 
 interface Props {
   filename?: string;
