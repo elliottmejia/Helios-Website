@@ -3,19 +3,23 @@ import { SEO } from "astro-seo";
 import Footer from "../components/footer2.astro";
 import Navbar from "../components/navbar/navbar2.astro";
 import "@fontsource-variable/inter/index.css";
+import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
 // import DarkModeToggle from "../components/react/converted/DarkModeToggle/DarkModeToggle.astro";
 // import { ViewTransitions } from "astro:transitions";
+
+import siteImage from "../../public/opengraph.jpg";
 
 export interface Props {
   title: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+// console.log(canonicalURL);
 
-const resolvedImageWithDomain = new URL(
-  "/opengraph.jpg",
-  Astro.site
-).toString();
+// const resolvedImageWithDomain = new URL(
+//   "/opengraph.jpg",
+//   Astro.site
+// ).toString();
 
 const { title } = Astro.props;
 
@@ -38,19 +42,21 @@ const makeTitle = title
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
       description="Change your home's life with Honest Solar."
-      canonical={canonicalURL}
+      canonical={Astro.site + Astro.url.pathname}
+
       openGraph={{
         basic: {
-          url: canonicalURL,
+          url: Astro.site + Astro.url.pathname,
           type: "website",
           title: `Honest Power- Power You Can Trust`,
-          image: resolvedImageWithDomain,
+          image: siteImage,
         },
         image: {
           alt: "Astroship Homepage Screenshot",

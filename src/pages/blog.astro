@@ -24,7 +24,7 @@ publishedBlogEntries.sort(function (a, b) {
         We write about solar power's impact on you and the world that we live in. 
       </Fragment>
     </Sectionhead>
-    <main class="mt-16">
+    <main class="mt-16 px-8 md:px-16">
       <ul class="grid gap-16 max-w-4xl mx-auto">
         {
           publishedBlogEntries.map((blogPostEntry, index) => (
@@ -37,9 +37,11 @@ publishedBlogEntries.sort(function (a, b) {
                     alt={blogPostEntry.data.image.alt}
                     sizes="(max-width: 800px) 100vw, 800px"
                     widths={[200, 400, 800]}
+                    width="800"
+                    height="300"
                     loading={index <= 2 ? "eager" : "lazy"}
                     decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-md"
+                    class:list="w-full rounded-md w-[800px] h-[300px] object-cover object-center"
                   />
                   <div>
                     <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
