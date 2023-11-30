@@ -32,15 +32,6 @@ const makeTitle = title
 <html lang="en" class="light">
 
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LMHL40QTT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-8LMHL40QTT');
-    </script>
     <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
@@ -54,6 +45,15 @@ const makeTitle = title
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Google tag (gtag.js) -->
+    <script type="text/partytown"  async src="https://www.googletagmanager.com/gtag/js?id=G-8LMHL40QTT"></script> 
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8LMHL40QTT');
+    </script>
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
