@@ -15,7 +15,7 @@ const IWCInterface: React.FC<Props> = ({ filename, src, anchorTag, alt = '', hei
     throw new Error("You can't have both a filename and a src. Please choose one.");
   }
 
-  const fullPath = filename ? `@assets/blogimages/${filename}` : src || '';
+  const fullPath = filename ? `../../assets/blogimages/${filename}` : src || '';
   const [links, setLinks] = useState(['', '']);
   const [author, setAuthor] = useState('');
   const [source, setSource] = useState('');
