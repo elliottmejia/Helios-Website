@@ -20,19 +20,13 @@ export async function getStaticPaths() {
 
 interface Proptypes {
   entry: any;
-  contact?: boolean;
 }
 
 // Get the entry directly from the prop on render
-const { entry, contact }:Proptypes = Astro.props;
+const { entry}:Proptypes = Astro.props;
 const { Content } = await entry.render();
 
 ---
-
-<script define:vars{src}>
-console.log("src =", src);
-</script>
-
 <Layout title={entry.data.title}>
   <Container>
     <div class="mx-auto max-w-3xl mt-14">
