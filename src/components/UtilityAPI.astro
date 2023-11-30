@@ -6,6 +6,7 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
 const baseURL = "https://utilityapi.com/authorize/myhonestpower/";
 // When import.meta.env.SSR === false
 const data = fetch(baseURL + import.meta.env.UTILITY_API_KEY).then((res) =>
