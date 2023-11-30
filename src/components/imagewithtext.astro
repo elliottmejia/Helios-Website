@@ -35,7 +35,7 @@ import { Icon } from "astro-icon";
       {icon && <Icon class="h-8 md:h-12" name={icon} />}
       {
         heading && (
-          <h2 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+          <h2 class="text-2xl font-semibold text-zinc-900">
             {heading}
           </h2>
         )
@@ -43,7 +43,7 @@ import { Icon } from "astro-icon";
     </div>
     {
       body && (
-        <p class="text-base text-zinc-600 dark:text-zinc-400 leading-normal">
+        <p class="text-base text-zinc-600 leading-normal">
           {body}
         </p>
       )
@@ -57,7 +57,7 @@ import { Icon } from "astro-icon";
       loading="lazy"
       alt={alt}
       class=" md:w-1/2 object-cover rounded-md block"
-      style="aspect-ratio: 500 / 500; object-fit: cover;" 
+      style="aspect-ratio: 500 / 500; object-fit: cover;"
     />
   )}
 
