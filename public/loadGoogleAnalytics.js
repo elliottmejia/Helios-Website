@@ -1,4 +1,4 @@
-function loadGoogleAnalytics() {
+export default function loadGoogleAnalytics() {
   if (localStorage.disableGA) {
     // Disable GA
     return;
