@@ -1,5 +1,4 @@
 import "https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.17/dist/cookieconsent.umd.js";
-import loadGoogleAnalytics from "./loadGoogleAnalytics.js";
 
 CookieConsent.run({
   categories: {
@@ -13,7 +12,6 @@ CookieConsent.run({
           label: "Google Analytics",
           onAccept: () => {
             localStorage.setItem("disableGA", false);
-            loadGoogleAnalytics();
           },
           onReject: () => {
             localStorage.setItem("disableGA", true);

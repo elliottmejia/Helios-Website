@@ -4,11 +4,11 @@ import Footer from "../components/footer2.astro";
 import Navbar from "../components/navbar/navbar2.astro";
 import "@fontsource-variable/inter/index.css";
 import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
-// import DarkModeToggle from "../components/react/converted/DarkModeToggle/DarkModeToggle.astro";
-// import { ViewTransitions } from "astro:transitions";
+//import { ViewTransitions } from "astro:transitions";
 
 import siteImage from "../../public/opengraph.png";
-import { Icon } from "astro-icon";
+// import { Icon } from "astro-icon";
+import GoogleAnalytics from "../components/data/GoogleAnalytics.astro";
 
 
 export interface Props {
@@ -34,6 +34,7 @@ const makeTitle = title
 <html lang="en" class="light">
 
   <head>
+    <GoogleAnalytics />
     <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
@@ -92,5 +93,6 @@ const makeTitle = title
 
     <script is:inline type="module"  src="/cookieconsent-config.js"></script>
 
+    <!-- <ViewTransitions /> -->
   </body>
 </html>
