@@ -1,6 +1,9 @@
 ---
+import { string } from "astro/zod";
 import SocialButtons from "../components/ui/socialbuttons.astro";
-const CONTENT = [
+type ContentType = Array<Array<{ title: string; url?: string; isHeading?: boolean; type?: string; cc?: string; }>>;
+
+const CONTENT: ContentType = [
   [
     { title: "Explore", url: "", isHeading: true },
     { title: "Home", url: "/" },
@@ -14,6 +17,7 @@ const CONTENT = [
     { title: "Terms of Use", url: "/legal/#terms" },
     { title: "Privacy Policy", url: "/legal" },
     { title: "Cookie Policy", url: "/cookies" },
+    { title: "Manage Cookies", type:"modal", cc: "show-preferencesModal" },
   ],
 ];
 ---
@@ -32,16 +36,25 @@ const CONTENT = [
               <ul class="space-y-2">
                 {item.map((item, index) => {
                   if (item.isHeading) return null;
-                  return (
-                    <li>
-                      <a
-                        class="text-sm text-zinc-300 hover:text-zinc-100"
-                        href={item.url}
-                      >
-                        {item.title}
-                      </a>
-                    </li>
-                  );
+                  return (item.type && item.type === "modal")?
+                    (
+                      <li>
+                        <button
+                          class="text-sm text-zinc-300 hover:text-zinc-100"
+                          type="button"
+                          data-cc={item.cc}>{item.title}</button>
+                      </li>
+                    ):
+                    (
+                      <li>
+                        <a
+                          class="text-sm text-zinc-300 hover:text-zinc-100"
+                          href={item.url}
+                        >
+                          {item.title}
+                        </a>
+                      </li>
+                    );
                 })}
               </ul>
             </div>

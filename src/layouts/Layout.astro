@@ -8,6 +8,8 @@ import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/s
 // import { ViewTransitions } from "astro:transitions";
 
 import siteImage from "../../public/opengraph.png";
+import { Icon } from "astro-icon";
+
 
 export interface Props {
   title: string;
@@ -46,14 +48,14 @@ const makeTitle = title
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google tag (gtag.js) -->
-    <script type="text/partytown"  async src="https://www.googletagmanager.com/gtag/js?id=G-8LMHL40QTT"></script> 
-    <script type="text/partytown">
+    <!-- <script type="text/partytown"  async src="https://www.googletagmanager.com/gtag/js?id=G-8LMHL40QTT"></script>  -->
+    <!-- <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-8LMHL40QTT');
-    </script>
+    </script> -->
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
@@ -72,21 +74,9 @@ const makeTitle = title
         },
       }}
     />
-    <!-- <ViewTransitions/> -->
-    <!--<script is:inline>// Check user's preferred color scheme-->
-    <!--let prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;-->
-    <!--let userPreferredTheme = prefersDarkTheme ? 'dark' : 'light';-->
 
-    <!--// Retrieve theme from local storage or use the user's preferred theme-->
-    <!--let storedTheme = localStorage.getItem("prefersTheme");-->
-    <!--let colorTheme = storedTheme || userPreferredTheme;-->
-
-    <!--// Apply the color theme to the HTML document-->
-    <!--document.documentElement.setAttribute('data-theme', colorTheme);-->
-
-    <!--// Log for demonstration purposes (you can remove this in your actual code)-->
-    <!--console.log(`User prefers ${userPreferredTheme} theme. Applied ${colorTheme} theme.`);;-->
-    <!--</script>-->
+    <!-- Cookie compliance styles  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.17/dist/cookieconsent.css"> 
   </head>
   <body>
     <Navbar/>
@@ -99,6 +89,8 @@ const makeTitle = title
         content-visibility: auto;
       }
     </style>
-    <!-- <DarkModeToggle client:load/> -->
+
+    <script type="module" src="../cookieconsent-config.mjs"></script>
+
   </body>
 </html>
