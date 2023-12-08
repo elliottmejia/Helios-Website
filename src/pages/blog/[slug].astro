@@ -38,7 +38,7 @@ const { Content } = await entry.render();
         {entry.data.title}
       </h1>
 
-      <Picture src={entry.data.image.src} alt={entry.data.image.alt} height="400" width="500"class="rounded-md my-6 h-full w-full" />
+      <Picture src={entry.data.image.src} alt={entry.data.image.alt} height="400" width="500"class="rounded-md my-6 w-full object-cover aspect-video object-top BLOG_IMAGE" />
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
         <span class="text-gray-400">
           {entry.data.author}
