@@ -22,8 +22,14 @@ let {
   creditName,
   creditSource,
 }: Props = Astro.props;
+
+if (className === undefined) {
+  className = "";
+}
+
 ---
 
+<div class="image_with_credit_container">
 <div
   class={` mx-auto flex-col my-16 ${className}`}
   style={`height: ${height}; width: auto; display: flex;  margin: 0 auto; justify-content:center;`}
@@ -37,12 +43,13 @@ let {
   />
   <credit
     style="font-size: 14px; color: #888; margin-top: 8px; display: block; text-align: center;"
-    >{creditCopy}
+    >{creditCopy && creditCopy}
     <span
-      ><a href={creditLink} rel="nofollow" target={target} class="text-[#888]"
+      ><a href={creditLink ? creditLink: "#"} rel="nofollow" target={target} class="text-[#888]"
         >{creditName && creditName + " /"}</a
       >
     </span>
     {creditSource}</credit
   >
+</div>
 </div>
