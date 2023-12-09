@@ -24,7 +24,7 @@ interface Proptypes {
 
 // Get the entry directly from the prop on render
 const { entry}:Proptypes = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
 
 ---
 <Layout title={entry.data.title}>
@@ -43,6 +43,8 @@ const { Content } = await entry.render();
         <span class="text-gray-400">
           {entry.data.author}
         </span>
+        <span class="text-gray-400">•</span>
+        <span class="text-gray-400">{remarkPluginFrontmatter.minutesRead}</span>
         <span class="text-gray-400">•</span>
         <time
           class="text-gray-400"

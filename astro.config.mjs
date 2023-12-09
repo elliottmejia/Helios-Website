@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
+import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,4 +22,7 @@ export default defineConfig({
   ],
   output: "server",
   adapter: vercel(),
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
+  },
 });
