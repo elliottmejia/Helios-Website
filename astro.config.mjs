@@ -11,7 +11,10 @@ import prefetch from "@astrojs/prefetch";
 
 // https://astro.build/config
 export default defineConfig({
-  prefetch: true,
+  prefetch: {
+    default: "viewport",
+    prefetchAll: true,
+  },
   integrations: [
     tailwind(),
     mdx(),

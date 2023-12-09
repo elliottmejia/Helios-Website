@@ -96,3 +96,16 @@ const makeTitle = title
     <!-- <ViewTransitions /> -->
   </body>
 </html>
+<script>
+//preftech btn
+import {prefetch} from 'astro:prefetch';
+
+const btns = document.querySelectorAll('button');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const url = btn.dataset.url;
+    if (url !== undefined) prefetch(url, {with: 'fetch'});
+  });
+});
+
+</script>
