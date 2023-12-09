@@ -8,7 +8,8 @@ interface Props {
   body?: string;
 }
 
-const {title, className, solo, body}: Props = Astro.props;
+let {title, className, solo, body}: Props = Astro.props;
+if (className === undefined) className = "";
 ---
 
 <section class={`${className && className} py-8 lg:py-16 px-4 mx-auto max-w-screen-md`}>
