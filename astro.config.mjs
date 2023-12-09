@@ -7,8 +7,11 @@ import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
+import prefetch from "@astrojs/prefetch";
+
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   integrations: [
     tailwind(),
     mdx(),
