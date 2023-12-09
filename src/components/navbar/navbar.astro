@@ -33,7 +33,9 @@ const menuitems = [
   <header class="flex flex-col lg:flex-row justify-between items-center my-0 w-100 ">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between "draggable="false">
-        <a href="/" class="logo  "  draggable="false">
+        <a
+          data-astro-prefetch="viewport"
+          href="/" class="logo"  draggable="false">
           <svg  xmlns="http://www.w3.org/2000/svg"  height="50px" viewBox="0 0 404.352 224" class="stroke-black">
             <g id="Group_1"  transform="translate(-326.937 -336.863)">
               <g id="Ellipse_1"  transform="translate(403.437 365.863)" fill="none"  stroke-width="15">
@@ -47,7 +49,9 @@ const menuitems = [
             </g>
           </svg>
         </a>
-        <a href="/" class="text-lg"><span class="text-2xl">Honest </span> <span class=" text-2xl">Power</span></a>
+        <a
+        data-astro-prefetch="viewport"
+        href="/" class="text-lg"><span class="text-2xl">Honest </span> <span class=" text-2xl">Power</span></a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-neutral-content" />
         </div>
@@ -68,6 +72,7 @@ const menuitems = [
                 {!item.children && (
                   <li>
                     <a
+                      data-astro-prefetch="viewport"
                       href={item.path}
                       class="flex lg:px-3 py-2 items-center hover:text-gray-900">
                       <span> {item.title}</span>

@@ -33,6 +33,7 @@ const { title, lastItem, children } = Astro.props;
           {
             children.map((item) => (
               <a
+                data-astro-prefetch="viewport"
                 href={item.path}
                 class="py-1 text-gray-600 hover:text-gray-900">
                 {item.title}

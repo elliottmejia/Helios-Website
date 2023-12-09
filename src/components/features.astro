@@ -29,6 +29,7 @@ const { title, data } = Astro.props;
   {
     data?.map((item:any, index:number) => (
       <a
+        data-astro-prefetch="viewport"
         href={item.link}
         class={`feature-item p-2 transition-colors duration-500`}>
         <div class="flex gap-4 items-start">

@@ -33,6 +33,7 @@ export default function Footer() {
                       return (
                         <li key={index}>
                           <a
+                            data-astro-prefetch="viewport"
                             className="text-sm text-zinc-300 hover:text-zinc-100"
                             href="#"
                           >

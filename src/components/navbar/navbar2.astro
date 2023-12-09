@@ -42,7 +42,9 @@ const menuitems:itemtype[] = [
     <div class="flex w-full lg:w-auto items-center justify-between">
 <!-- LOGO AND TITLE -->
 <div class="flex flex-inline align-middle">
-      <a href="/" class="logo" draggable="false">
+      <a
+      data-astro-prefetch="viewport"
+      href="/" class="logo" draggable="false">
         <!-- Logo -->
         <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 0 404.352 224" class="stroke-black">
           <g id="Group_1" transform="translate(-326.937 -336.863)">
@@ -59,7 +61,9 @@ const menuitems:itemtype[] = [
       </a>
       <!-- Title -->
       <div class="self-center">
-        <a href="/" class="text-lg"><span class="text-2xl">Honest </span> <span class=" text-2xl">Power</span></a>
+        <a
+        data-astro-prefetch="viewport"
+        href="/" class="text-lg"><span class="text-2xl">Honest </span> <span class=" text-2xl">Power</span></a>
       </div>
 </div>
 <!-- HAMBURGER -->
@@ -92,7 +96,9 @@ const menuitems:itemtype[] = [
                   <div class="lg:absolute w-full lg:w-48 z-10 lg:left-0 origin-top-left">
                     <div class="px-3 lg:py-2 lg:bg-white lg:rounded-md lg:shadow lg:border flex flex-col">
                       {item.children.map((child) => (
-                        <a href={child.path} class="py-1 text-gray-600 hover:text-gray-900" data-key={child.title}>
+                        <a
+                        data-astro-prefetch="viewport"
+                        href={child.path} class="py-1 text-gray-600 hover:text-gray-900" data-key={child.title}>
                           {child.title}
                         </a>
                       ))}
@@ -104,7 +110,9 @@ const menuitems:itemtype[] = [
             </li>
           ) : (
             <li data-key={item.title}>
-              <a href={item.path} class="flex lg:px-3 py-2 items-center hover:text-gray-900">
+              <a
+              data-astro-prefetch="viewport"
+              href={item.path} class="flex lg:px-3 py-2 items-center hover:text-gray-900">
                 <span>{item.title}</span>
               </a>
             </li>
@@ -115,7 +123,9 @@ const menuitems:itemtype[] = [
     <div>
       <div class="hidden lg:flex items-center gap-4 ">
 
-        <a href="/contact?getQuote;" class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent button astro-P5FXXAUY">Get a quote
+        <a
+        data-astro-prefetch="viewport"
+        href="/contact?getQuote;" class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent button astro-P5FXXAUY">Get a quote
         </a>
       </div>
     </div>
