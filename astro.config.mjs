@@ -15,6 +15,11 @@ export default defineConfig({
     default: "viewport",
     prefetchAll: true,
   },
+  hooks: {
+    "astro:config:setup": ({ addDevToolbarApp }) => {
+      addDevToolbarApp("./my-app.js");
+    },
+  },
   integrations: [
     tailwind(),
     mdx(),
