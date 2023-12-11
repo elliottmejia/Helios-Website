@@ -1,45 +1,45 @@
 ---
 type ImageType = {
   src: string;
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   format: string;
 };
 
 const images: ImageType[] = await Astro.glob("/src/assets/brands/*").then(
   (files) => {
     return files.map((file) => file.default);
-  }
+  },
 );
 
-const linkData:string[][] = [
-  ["Mosaic", "https://joinmosiac.com/"],
-  []
-] 
+images.map((image: ImageType) => {
+  image.width = 200;
+  image.height = "auto";
+});
 
 ---
 
 <section class="mt-16">
-    <h2 class="text-4xl font-bold text-center mt-8 my-4">Our partners</h2>
+  <h2 class="text-4xl font-bold text-center mt-8 my-4">Our partners</h2>
 
-    <div class="h-100 w-50">
-      <div
-        class="grid grid-cols-3 mx-auto gap-8 justify-items-center w-[50%] items-center"
-      >
-        {
-          images.map((image: ImageType, index: number) => (
-            <img
-              class="partner-image object-contain h-full rounded-lg mt-4 transition"
-              src={image.src}
-              loading="lazy"
-              width={image.width}
-              height={image.height}
-              alt={`Partner ${index + 1}`}
-            />
-          ))
-        }
-      </div>
+  <div class="h-100 w-50">
+    <div
+      class="grid grid-cols-none sm:grid-cols-2  lg:grid-cols-5 mx-auto gap-8 justify-items-center w-[50%] lg:w-[75%] items-center"
+    >
+      {
+        images.map((image: ImageType, index: number) => (
+          <img
+            class=`partner-image object-contain h-full rounded-lg mt-4 transition`
+            src={image.src}
+            loading="lazy"
+            width={image.width}
+            height={image.height}
+            alt={`Partner ${index + 1}`}
+          />
+        ))
+      }
     </div>
+  </div>
 </section>
 
 <script>
