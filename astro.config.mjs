@@ -5,18 +5,14 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
+
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  // prefetch: {
-  //   default: "viewport",
-  //   prefetchAll: true,
-  // },
-  hooks: {
-    "astro:config:setup": ({ addDevToolbarApp }) => {
-      addDevToolbarApp("./my-app.js");
-    },
+  prefetch: {
+    default: "viewport",
+    prefetchAll: true,
   },
   integrations: [
     tailwind(),
