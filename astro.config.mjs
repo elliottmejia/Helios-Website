@@ -9,10 +9,10 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  prefetch: {
-    default: "viewport",
-    prefetchAll: true,
-  },
+  // prefetch: {
+  //   default: "viewport",
+  //   prefetchAll: true,
+  // },
   hooks: {
     "astro:config:setup": ({ addDevToolbarApp }) => {
       addDevToolbarApp("./my-app.js");
