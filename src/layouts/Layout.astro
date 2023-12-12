@@ -9,6 +9,9 @@ import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/s
 import siteImage from "../../public/opengraph.png";
 // import { Icon } from "astro-icon";
 import GoogleAnalytics from "../components/data/GoogleAnalytics.astro";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
+
 
 
 export interface Props {
@@ -34,6 +37,7 @@ const makeTitle = title
 <html lang="en" class="light">
 
   <head>
+    <SpeedInsights />
     <GoogleAnalytics />
     <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
