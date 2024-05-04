@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-const heroImage: string = "../assets/honestpower/solarhero.png";
+import HeroImage from "../assets/honestpower/solarhero.png";
 import Link from "../components/ui/link.astro";
 import { Icon } from "astro-icon";
 ---
@@ -10,7 +10,7 @@ import { Icon } from "astro-icon";
 >
   <div class="py-6 md:order-1 hidden md:block">
     <Picture
-      src={heroImage}
+      src={HeroImage}
       alt="solar panel with a ring"
       class="grayscale"
       widths={[200, 400, 600]}

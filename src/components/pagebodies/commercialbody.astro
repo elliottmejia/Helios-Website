@@ -5,13 +5,15 @@ import ImageWithText from "../../components/imagewithtext.astro";
 import FeatureList from "../../components/FeatureList";
 import Cards from "../../components/cards.astro";
 
+import { Picture } from "astro:assets";
+
 // solo means the body is alone
 
 const { solo } = Astro.props;
 const title = "Commercial";
 
-const HeroImageSrc = "../../assets/honestpower/office.jpg";
-const RoofImageSrc = "../../assets/honestpower/commercial-roof.jpeg";
+import HeroImage from "../../assets/honestpower/office.jpg";
+import RoofImage from "../../assets/honestpower/commercial-roof.jpeg";
 
 // image imports follow this type:
 // {
@@ -34,8 +36,8 @@ import Icon from "astro-icon";
   {
     solo && (
       <div class="relative">
-        <img
-          src={HeroImageSrc}
+        <Picture
+          src={HeroImage}
           alt="Background image"
           width="800"
           height="300"
@@ -57,7 +59,7 @@ import Icon from "astro-icon";
     )
   }
   <ImageWithText
-    src={RoofImageSrc}
+    src={RoofImage.src}
     heading="What if solar was affordable for your business?"
     alt="Warehouse with solar panels drone shot"
     body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space."
