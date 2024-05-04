@@ -184,60 +184,7 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"blog": {
-"Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx": {
-	id: "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx";
-  slug: "solar-savings-navigating-tax-benefits-of-going-solar";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"planet.mdx": {
-	id: "planet.mdx";
-  slug: "planet";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"technologies.mdx": {
-	id: "technologies.mdx";
-  slug: "technologies";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"test.md": {
-	id: "test.md";
-  slug: "test";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-};
-"team": {
-"janette-lynch.md": {
-	id: "janette-lynch.md";
-  slug: "janette-lynch";
-  body: string;
-  collection: "team";
-  data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-"marcell-ziemann.md": {
-	id: "marcell-ziemann.md";
-  slug: "marcell-ziemann";
-  body: string;
-  collection: "team";
-  data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-"robert-palmer.md": {
-	id: "robert-palmer.md";
-  slug: "robert-palmer";
-  body: string;
-  collection: "team";
-  data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-};
-
+		
 	};
 
 	type DataEntryMap = {
