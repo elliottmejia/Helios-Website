@@ -6,7 +6,7 @@ import "@fontsource-variable/inter/index.css";
 import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
 //import { ViewTransitions } from "astro:transitions";
 
-import siteImage from "../../public/opengraph.png";
+const siteImage: string = "../../public/opengraph.png";
 // import { Icon } from "astro-icon";
 import GoogleAnalytics from "../components/data/GoogleAnalytics.astro";
 
@@ -67,7 +67,7 @@ const makeTitle = title ? title : "Honest Power";
           url: Astro.site + Astro.url.pathname,
           type: "website",
           title: `Honest Power- Power You Can Trust`,
-          image: siteImage.src as string,
+          image: siteImage as string,
         },
         image: {
           alt: "Astroship Homepage Screenshot",
