@@ -6,13 +6,9 @@ import "@fontsource-variable/inter/index.css";
 import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
 //import { ViewTransitions } from "astro:transitions";
 
-
-
 import siteImage from "../../public/opengraph.png";
 // import { Icon } from "astro-icon";
 import GoogleAnalytics from "../components/data/GoogleAnalytics.astro";
-
-
 
 export interface Props {
   title: string;
@@ -28,21 +24,22 @@ export interface Props {
 
 const { title } = Astro.props;
 
-const makeTitle = title
-  ? title
-  : "Honest Power";
+const makeTitle = title ? title : "Honest Power";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="light">
-
   <head>
     <GoogleAnalytics />
     <script>
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.remove("dark");
       }
     </script>
     <meta charset="UTF-8" />
@@ -65,13 +62,12 @@ const makeTitle = title
       title={makeTitle}
       description="Change your home's life with Honest Solar."
       canonical={Astro.site + Astro.url.pathname}
-
       openGraph={{
         basic: {
           url: Astro.site + Astro.url.pathname,
           type: "website",
           title: `Honest Power- Power You Can Trust`,
-          image: siteImage.src,
+          image: siteImage.src as string,
         },
         image: {
           alt: "Astroship Homepage Screenshot",
@@ -80,10 +76,13 @@ const makeTitle = title
     />
 
     <!-- Cookie compliance styles  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.17/dist/cookieconsent.css"> 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.0-rc.17/dist/cookieconsent.css"
+    />
   </head>
   <body>
-    <Navbar/>
+    <Navbar />
     <slot />
     <Footer />
     <style is:global>
@@ -94,21 +93,20 @@ const makeTitle = title
       }
     </style>
 
-    <script is:inline type="module"  src="/cookieconsent-config.js"></script>
+    <script is:inline type="module" src="/cookieconsent-config.js"></script>
 
     <!-- <ViewTransitions /> -->
+    <script>
+      //preftech btn
+      import { prefetch } from "astro:prefetch";
+
+      const btns = document.querySelectorAll("button");
+      btns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const url = btn.dataset.url;
+          if (url !== undefined) prefetch(url, { with: "fetch" });
+        });
+      });
+    </script>
   </body>
 </html>
-<script>
-//preftech btn
-import {prefetch} from 'astro:prefetch';
-
-const btns = document.querySelectorAll('button');
-btns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const url = btn.dataset.url;
-    if (url !== undefined) prefetch(url, {with: 'fetch'});
-  });
-});
-
-</script>

@@ -18,7 +18,7 @@ import RoofImage from "../../assets/honestpower/coolhome.jpg";
       solo && (
         <div class="relative">
           <img
-            src={HeroImage.src}
+            src={HeroImage.src as string}
             alt="Background image"
             width="800"
             height="300"
@@ -40,7 +40,7 @@ import RoofImage from "../../assets/honestpower/coolhome.jpg";
     }
 
   <ImageWithText
-    src={RoofImage.src}
+    src={RoofImage.src as string}
     heading="What if solar was affordable for your home?"
     alt="Residential rooftop with solar panels"
     body="Considering a residential solar power system for your home? Embrace renewable energy to not only benefit the environment but also enjoy numerous advantages for your household. By transitioning to solar, you can capitalize on government incentives, significantly reducing the overall cost of your solar installation. Our expert and certified team is dedicated to working closely with you to design, plan, and maintain a customized solar system tailored to meet your home's energy needs. With over a decade of experience in serving homes across California, Arizona, and Nevada, our trusted partners are well-equipped to help you harness the power of the sun for your residential space."

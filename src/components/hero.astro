@@ -5,64 +5,71 @@ import Link from "../components/ui/link.astro";
 import { Icon } from "astro-icon";
 ---
 
-  <main class="relative z-[1] h-fit grid lg:grid-cols-2 place-items-center px-8 pt-16 pb-8 md:pt-12 md:pb-24 bg-amber-600 text-white mb-8">
-    <div class="py-6 md:order-1 hidden md:block">
-      <Picture
-          src={heroImage}
-          alt="solar panel with a ring"
-          class="grayscale"
-          widths={[200, 400, 600]}
-          sizes="(max-width: 800px) 100vw, 620px"
-          loading="eager"
-          formats={["auto", "webp", "jpg"]}
-          draggable="false"
-      />
+<main
+  class="relative z-[1] h-fit grid lg:grid-cols-2 place-items-center px-8 pt-16 pb-8 md:pt-12 md:pb-24 bg-amber-600 text-white mb-8"
+>
+  <div class="py-6 md:order-1 hidden md:block">
+    <Picture
+      src={heroImage}
+      alt="solar panel with a ring"
+      class="grayscale"
+      widths={[200, 400, 600]}
+      sizes="(max-width: 800px) 100vw, 620px"
+      formats={["auto", "webp", "jpg"]}
+      fallbackFormat="jpg"
+    />
+  </div>
+  <div>
+    <h6>SERVING CUSTOMERS SINCE 2010</h6>
+    <h1
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-white"
+    >
+      Let's get Honest About Solar.
+    </h1>
+    <p class="text-lg mt-4 text-white max-w-xl">
+      The future is electric — there’s never been a better time to take back
+      control of your energy.
+      <!-- <wbr /> -->
+    </p>
+    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <Link
+        href="/contact"
+        class="flex gap-1 items-center justify-center"
+        rel="noopener"
+      >
+        Get a quote
+      </Link>
+      <a
+        data-astro-prefetch="viewport"
+        id="learn-more-link"
+        href="/about"
+        rel="noopener"
+        class="flex gap-1 items-center justify-center text-xl ml-5"
+      >
+        Learn more <Icon
+          id="learn-more-right-arrow"
+          class="text-white w-5 h-5 relative"
+          name="maki:arrow"
+        />
+      </a>
     </div>
-    <div>
-      <h6>SERVING CUSTOMERS SINCE 2010</h6>
-      <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-white">
-        Let's get Honest About Solar.
-      </h1>
-      <p class="text-lg mt-4 text-white max-w-xl">
-          The future is electric — there’s never been a better time to take back control of your energy.
-        <!-- <wbr /> -->
-      </p>
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
-        <Link
-            href="/contact"
-            class="flex gap-1 items-center justify-center"
-            rel="noopener"
-        >
-          Get a quote
-        </Link>
-        <a
-            data-astro-prefetch="viewport"
-            id="learn-more-link"
-            href="/about"
-            rel="noopener"
-            class="flex gap-1 items-center justify-center text-xl ml-5"
-        >
-           Learn more <Icon id="learn-more-right-arrow" class="text-white w-5 h-5 relative" name="maki:arrow" />
-        </a>
-      </div>
-    </div>
-  </main>
+  </div>
+</main>
 
 <script>
-const learnMoreLink  = document.getElementById("learn-more-link");
-const learnMoreArrow = document.getElementById("learn-more-right-arrow");
+  const learnMoreLink = document.getElementById("learn-more-link");
+  const learnMoreArrow = document.getElementById("learn-more-right-arrow");
 
-learnMoreLink?.addEventListener("mouseenter",()=>{
-  learnMoreArrow?.classList.add("move-right");
-});
+  learnMoreLink?.addEventListener("mouseenter", () => {
+    learnMoreArrow?.classList.add("move-right");
+  });
 
-learnMoreLink?.addEventListener("mouseleave",()=>{
-  learnMoreArrow?.classList.remove("move-right");
-});
-
+  learnMoreLink?.addEventListener("mouseleave", () => {
+    learnMoreArrow?.classList.remove("move-right");
+  });
 </script>
 <style>
-  .move-right{
-    transform:translateX(10px);
+  .move-right {
+    transform: translateX(10px);
   }
 </style>

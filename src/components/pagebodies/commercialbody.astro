@@ -9,21 +9,19 @@ import Cards from "../../components/cards.astro";
 
 const { solo } = Astro.props;
 const title = "Commercial";
-const AccordionData = [
-  {
-    header: "Foo",
-    id: "1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
-  },
-  {
-    header: "bar",
-    id: "2",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
-  },
-];
 
 import HeroImage from "../../assets/honestpower/office.jpg";
 import RoofImage from "../../assets/honestpower/commercial-roof.jpeg";
+
+const RoofImageSrc: string = RoofImage.src;
+const HeroImageSrc: string = HeroImage.src;
+// image imports follow this type:
+// {
+//   src: '/@fs/Users/elliottmejia/WebstormProjects/astroship/src/assets/honestpower/commercial-roof.jpeg?origWidth=2600&origHeight=1950&origFormat=jpg',
+//   width: 2600,
+//   height: 1950,
+//   format: 'jpg'
+// }
 
 import Icon from "astro-icon";
 ---
@@ -39,7 +37,7 @@ import Icon from "astro-icon";
     solo && (
       <div class="relative">
         <img
-          src={HeroImage.src}
+          src={HeroImageSrc}
           alt="Background image"
           width="800"
           height="300"
@@ -61,7 +59,7 @@ import Icon from "astro-icon";
     )
   }
   <ImageWithText
-    src={RoofImage.src}
+    src={RoofImageSrc}
     heading="What if solar was affordable for your business?"
     alt="Warehouse with solar panels drone shot"
     body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space."

@@ -6,8 +6,6 @@ import Container from "../components/container.astro";
 import Sectionhead from "../components/sectionhead.astro";
 import type { string } from "astro/zod";
 
-
-console.log("Type of picture: ", typeof Picture);
 // Filter team entries with 'draft: false' & date before current date
 const publishedTeamMembers = await getCollection("team", ({ data }) => {
   return !data.draft && data.publishDate < new Date();
@@ -18,7 +16,9 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
   <Container>
     <Sectionhead>
       <Fragment slot="title">About Us</Fragment>
-      <Fragment slot="desc">First of all, we're passionate about solar...</Fragment>
+      <Fragment slot="desc">
+        First of all, we're passionate about solar...
+      </Fragment>
     </Sectionhead>
 
     <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
@@ -26,12 +26,11 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
         Changing the world, one panel at a time.
       </h2>
       <p class="text-lg leading-relaxed text-slate-500">
-        We are a team of solar experts passionate about helping our
-        customers save money while reducing their carbon footprint. We are
-        committed to providing the highest quality solar panels and
-        installation services to our customers. We are proud to be a local
-        business that has been serving the greater Los Angeles area for over
-        ten years.
+        We are a team of solar experts passionate about helping our customers
+        save money while reducing their carbon footprint. We are committed to
+        providing the highest quality solar panels and installation services to
+        our customers. We are proud to be a local business that has been serving
+        the greater Los Angeles area for over ten years.
       </p>
     </div>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
@@ -51,9 +50,7 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
             </div>
 
             <div class="mt-4 text-center">
-              <h2 class="text-lg text-gray-800">
-                {teamMemberEntry.data.name}
-              </h2>
+              <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
               <h3 class="text-sm text-slate-500">
                 {teamMemberEntry.data.title}
               </h3>
