@@ -1,8 +1,7 @@
 ---
 import { SEO } from "astro-seo";
-import Footer from "../components/footer2.astro";
-import Navbar from "../components/navbar/navbar2.astro";
-import "@fontsource-variable/inter/index.css";
+import Footer from "../components/footer.astro";
+import Navbar from "../components/navbar/navbar.astro";
 import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
 //import { ViewTransitions } from "astro:transitions";
 
@@ -47,6 +46,7 @@ const makeTitle = title ? title : "Honest Power";
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
 
     <!-- Google tag (gtag.js) -->
     <!-- <script type="text/partytown"  async src="https://www.googletagmanager.com/gtag/js?id=G-8LMHL40QTT"></script>  -->

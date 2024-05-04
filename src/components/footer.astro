@@ -1,19 +1,94 @@
-<footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {new Date().getFullYear()} Honest Power. All rights reserved.
+---
+import SocialButtons from "./ui/socialbuttons.astro";
+type ContentType = Array<
+  Array<{
+    title: string;
+    url?: string;
+    isHeading?: boolean;
+    type?: string;
+    cc?: string;
+  }>
+>;
+
+const CONTENT: ContentType = [
+  [
+    { title: "Explore", url: "", isHeading: true },
+    { title: "Home", url: "/" },
+    { title: "About", url: "/about" },
+    { title: "Services", url: "/services" },
+    { title: "Contact", url: "/contact" },
+    { title: "Utility API", url: "/utility" },
+  ],
+  [
+    { title: "Legal", url: "", isHeading: true },
+    { title: "Terms of Use", url: "/legal/#terms" },
+    { title: "Privacy Policy", url: "/legal" },
+    { title: "Cookie Policy", url: "/cookies" },
+    { title: "Manage Cookies", type: "modal", cc: "show-preferencesModal" },
+  ],
+];
+---
+
+<footer class="w-full pb-0 bg-black p-16 mt-8 bottom-0 left-0">
+  <div class="container sm:px-4 md:px-6">
+    <div
+      class="grid grid-cols-2 gap-2 md:gap-4 sm:justify-items-center mb-16 lg:mx-36"
+    >
+      {/* ITERATING OBJ  */}
+      {
+        CONTENT.map((item, index) => {
+          return (
+            <div>
+              <h3 class="text-lg font-medium text-white mb-2">
+                {item[0].title}
+              </h3>
+              <ul class="space-y-2">
+                {item.map((item, index) => {
+                  if (item.isHeading) return null;
+                  return item.type && item.type === "modal" ? (
+                    <li>
+                      <button
+                        class="text-sm text-zinc-300 hover:text-zinc-100"
+                        type="button"
+                        data-cc={item.cc}
+                      >
+                        {item.title}
+                      </button>
+                    </li>
+                  ) : (
+                    <li>
+                      <a
+                        data-astro-prefetch="viewport"
+                        class="text-sm text-zinc-300 hover:text-zinc-100"
+                        href={item.url}
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })
+      }
+      {/* NEWSLETTER  */}
+    </div>
+  </div>
+  <p
+    class="text-center relative right-0 bottom-0 text-sm text-slate-400 pb-2 mt-2"
+  >
+    Copyright ©{new Date().getFullYear()} Honest Power. All rights reserved.
   </p>
-  <!--
-    Can we ask you a favor 🙏
-    Please keep this backlink on your website if possible.
-    or Purchase a commercial license from https://web3templates.com
-  -->
-      <p class="text-center text-xs text-slate-500 mt-1">
-        Made with <a
-          href="https://web3templates.com"
-          target="_blank"
-          rel="noopener"
-          class="hover:underline">
-          Web3Templates
-        </a>
-      </p>
+  <SocialButtons
+    links={[
+      {
+        url: "https://www.instagram.com/honestpowersolar_/",
+        icon: "ri:instagram-fill",
+      },
+    ]}
+    ,
+    class="relative bottom-0 right-0 pb-2 pr-2 text-white"
+    childClass="text-white stroke-white fill-white"
+  />
 </footer>

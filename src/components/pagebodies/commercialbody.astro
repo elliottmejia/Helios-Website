@@ -15,14 +15,6 @@ const title = "Commercial";
 import HeroImage from "../../assets/honestpower/office.jpg";
 import RoofImage from "../../assets/honestpower/commercial-roof.jpeg";
 
-// image imports follow this type:
-// {
-//   src: '/@fs/Users/elliottmejia/WebstormProjects/astroship/src/assets/honestpower/commercial-roof.jpeg?origWidth=2600&origHeight=1950&origFormat=jpg',
-//   width: 2600,
-//   height: 1950,
-//   format: 'jpg'
-// }
-
 import Icon from "astro-icon";
 ---
 
@@ -39,9 +31,9 @@ import Icon from "astro-icon";
         <Picture
           src={HeroImage}
           alt="Background image"
-          width="800"
-          height="300"
-          class="object-cover w-full h-64 rounded-lg"
+          width={800}
+          height={400}
+          class="object-cover w-full  rounded-lg"
           style="aspect-ratio: 800 / 400; object-fit: cover;"
         />
         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center gap-4 text-center">
@@ -59,12 +51,13 @@ import Icon from "astro-icon";
     )
   }
   <ImageWithText
-    src={RoofImage.src}
+    src={RoofImage}
     heading="What if solar was affordable for your business?"
     alt="Warehouse with solar panels drone shot"
     body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space."
     icon="grommet-icons:solaris"
     imgpos="left"
+    class="w-full"
   />
 
   <FeatureList

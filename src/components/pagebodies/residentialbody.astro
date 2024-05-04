@@ -3,51 +3,60 @@ import PagebodyLayout from "../../layouts/PagebodyLayout.astro";
 import ImageWithText from "../../components/imagewithtext.astro";
 import FeatureList from "../../components/FeatureList";
 import Cards from "../../components/cards.astro";
+import { Picture } from "astro:assets";
 
 // solo means the body is alone
 
 const { solo } = Astro.props;
 const title = "Residential";
 
-const HeroImage = "../../assets/grid.jpg";
-const RoofImage = "../../assets/honestpower/coolhome.jpg";
+import HeroImage from "../../assets/grid.jpg";
+import RoofImage from "../../assets/honestpower/coolhome.jpg";
 ---
 
-<PagebodyLayout title={title} viewTitle={false} solo={solo} class="pt-0" pagetype="residential">
-    {
-      solo && (
-        <div class="relative">
-          <img
-            src={HeroImage as string}
-            alt="Background image"
-            width="800"
-            height="300"
-            class="object-cover w-full h-64 rounded-lg"
-            style="aspect-ratio: 800 / 400; object-fit: cover;"
-          />
-          <div id="ani-target" class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center gap-4 text-center">
-            <h6 class="text-xl font-bold text-gray-100">
-              Honest Power -  Residential 
-            </h6>
-            <h1 class="text-7xl font-bold text-black p-4 backdrop-contrast-75 backdrop-invert ">
-              Break free from the grid.
-            </h1>
-            
-  <!--          <h5 class="text-2xl font-bold text-gray-100">at an affordable price</h5> -->
-          </div>
+<PagebodyLayout
+  title={title}
+  viewTitle={false}
+  solo={solo}
+  class="pt-0"
+  pagetype="residential"
+>
+  {
+    solo && (
+      <div class="relative">
+        <Picture
+          src={HeroImage}
+          alt="Background image"
+          width={900}
+          height={900}
+          class="object-cover w-full h-64 rounded-lg"
+          style="aspect-ratio: 800 / 400; object-fit: cover;"
+        />
+
+        <div
+          id="ani-target"
+          class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center gap-4 text-center"
+        >
+          <h6 class="text-xl font-bold text-gray-100">
+            Honest Power - Residential
+          </h6>
+          <h1 class="text-7xl font-bold text-black p-4 backdrop-contrast-75 backdrop-invert ">
+            Break free from the grid.
+          </h1>
         </div>
-      )
-    }
+      </div>
+    )
+  }
 
   <ImageWithText
-    src={RoofImage as string}
+    src={RoofImage}
     heading="What if solar was affordable for your home?"
     alt="Residential rooftop with solar panels"
     body="Considering a residential solar power system for your home? Embrace renewable energy to not only benefit the environment but also enjoy numerous advantages for your household. By transitioning to solar, you can capitalize on government incentives, significantly reducing the overall cost of your solar installation. Our expert and certified team is dedicated to working closely with you to design, plan, and maintain a customized solar system tailored to meet your home's energy needs. With over a decade of experience in serving homes across California, Arizona, and Nevada, our trusted partners are well-equipped to help you harness the power of the sun for your residential space."
     icon="grommet-icons:solaris"
     imgpos="right"
-    height="300px"
-    width="300px"
+    height={1000}
+    width={1000}
   />
 
   <FeatureList
