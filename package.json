@@ -5,6 +5,7 @@
     "private": false,
     "scripts": {
         "start": "astro dev",
+        "network": "astro dev --host",
         "build": "astro check && astro build",
         "build:node": "pnpx astro build --node --root ./dist",
         "preview": "astro preview",

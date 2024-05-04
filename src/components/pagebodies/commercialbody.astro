@@ -24,12 +24,17 @@ const AccordionData = [
 
 import HeroImage from "../../assets/honestpower/office.jpg";
 import RoofImage from "../../assets/honestpower/commercial-roof.jpeg";
+
 import Icon from "astro-icon";
 ---
 
-
-
-<PagebodyLayout title={title} viewTitle={false} solo={solo} class="pt-0" pagetype="commercial">
+<PagebodyLayout
+  title={title}
+  viewTitle={false}
+  solo={solo}
+  class="pt-0"
+  pagetype="commercial"
+>
   {
     solo && (
       <div class="relative">
@@ -48,51 +53,51 @@ import Icon from "astro-icon";
           <h1 class="text-5xl font-bold text-white">
             Custom Commercial Solar Panels
           </h1>
-          <h5 class="text-2xl font-bold text-gray-100">at an affordable price</h5>
+          <h5 class="text-2xl font-bold text-gray-100">
+            at an affordable price
+          </h5>
         </div>
       </div>
     )
   }
-  <ImageWithText img={RoofImage} 
-  heading="What if solar was affordable for your business?" 
-  alt="Warehouse with solar panels drone shot" 
-  body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space." 
-  icon="grommet-icons:solaris"
-  imgpos="left" 
+  <ImageWithText
+    src={RoofImage.src}
+    heading="What if solar was affordable for your business?"
+    alt="Warehouse with solar panels drone shot"
+    body="Are you considering a commercial solar power system for your building? Embracing renewable energy not only benefits the environment but also offers numerous advantages for your business. By going green, you can take advantage of government tax incentives, reducing the overall cost of your solar system. Our expert and certified team will work closely with you to design, plan, and maintain a customized solar system tailored to your business needs. With over a decade of experience serving California, Arizona, and Nevada, our trusted partners are well-equipped to assist you in harnessing the power of the sun for your commercial space."
+    icon="grommet-icons:solaris"
+    imgpos="left"
   />
 
-  <FeatureList 
+  <FeatureList
     title="Benefits of Commercial Solar Panels"
     description=""
     checklist={[
-      ["$0 Down", "" ],
-      [ "Customized system", "" ],
-      [ "Roofing available", "" ],
-      [ "Up to 80% tax credit", "" ],
-      [ "Save millions", "" ],
-      [ "Lower your bill", "" ],
-      [ "Fossil fuels", "line-through" ],
-      [ "Save the planet", "" ],
+      ["$0 Down", ""],
+      ["Customized system", ""],
+      ["Roofing available", ""],
+      ["Up to 80% tax credit", ""],
+      ["Save millions", ""],
+      ["Lower your bill", ""],
+      ["Fossil fuels", "line-through"],
+      ["Save the planet", ""],
     ]}
-    gradient={
-[ 
-      "gray-400", "purple-600"
- ]
-    }
+    gradient={["gray-400", "purple-600"]}
   />
-  <Cards list={
-    [
-        {
-          title: "Increased Depreciation.",
-          body: "Business can deduct up to 85% of the value of their solar system from their taxes, meaning that you can offset the upfront cost of your solar system installation.",
-        },
-        {
-          title: "Reduce Operating Costs.",
-          body: "Implementing solar solutions immediately lowers your energy bill and utility costs.",
-        },
-        {
-          title: "Receive Rebates or Credit.",
-          body: "The government is injecting billions into solar, meaning that your company can benefit immediately. Incentives will cover 45%-80% of the cost of your solar system.",
-        },
-    ]}/>
+  <Cards
+    list={[
+      {
+        title: "Increased Depreciation.",
+        body: "Business can deduct up to 85% of the value of their solar system from their taxes, meaning that you can offset the upfront cost of your solar system installation.",
+      },
+      {
+        title: "Reduce Operating Costs.",
+        body: "Implementing solar solutions immediately lowers your energy bill and utility costs.",
+      },
+      {
+        title: "Receive Rebates or Credit.",
+        body: "The government is injecting billions into solar, meaning that your company can benefit immediately. Incentives will cover 45%-80% of the cost of your solar system.",
+      },
+    ]}
+  />
 </PagebodyLayout>

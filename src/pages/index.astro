@@ -14,37 +14,41 @@ const featureCopy = {
       description: "Kill the guilt and reduce your carbon footprint.",
       icon: "ion:earth-sharp",
       cta: "Learn More",
-      link: "services/residential"
+      link: "services/residential",
     },
     {
       title: "Save your money",
       description: "Tax credits, lower bills, less stress.",
       icon: "ion:cash",
       cta: "Learn more",
-      link: "services/residential"
+      link: "services/residential",
     },
     {
       title: "Lock in your future",
-      description: "The cost of energy is only rising. Keep your price low for years to come.",
+      description:
+        "The cost of energy is only rising. Keep your price low for years to come.",
       icon: "ant-design:stock-outlined",
       cta: "Learn more",
-      link: "services/residential"
+      link: "services/residential",
     },
   ],
   who: [
     {
       title: "Easy maintenance",
-      description: "Enjoy hassle-free solar systems that require minimal maintenance, providing you with a reliable and long-lasting energy solution.",
+      description:
+        "Enjoy hassle-free solar systems that require minimal maintenance, providing you with a reliable and long-lasting energy solution.",
       icon: "ion:construct",
     },
     {
       title: "Energy Independence",
-      description: "Gain control over your energy future and reduce vulnerability to energy market fluctuations, ensuring a more stable and secure energy supply.",
+      description:
+        "Gain control over your energy future and reduce vulnerability to energy market fluctuations, ensuring a more stable and secure energy supply.",
       icon: "ion:accessibility",
     },
     {
       title: "Increased Property Value",
-      description: "Enhance the value of your property with the installation of solar panels, making it more attractive to eco-conscious buyers and investors.",
+      description:
+        "Enhance the value of your property with the installation of solar panels, making it more attractive to eco-conscious buyers and investors.",
       icon: "ion:wallet",
     },
   ],
@@ -55,13 +59,18 @@ const featureCopy = {
   <Container>
     <Hero />
     <Features title="Why Solar?" data={featureCopy.why} />
-    <Cta title="There is no reason not to switch." subtitle="Plus, you may qualify for up to a 30% tax rebate."
-        cta="Get a free consultation" href="/contact"
+    <Cta
+      title="Eliminate your electric bill."
+      subtitle="Plus, you may qualify for up to a 30% tax rebate."
+      cta="Free Estimate"
+      href="/contact"
     />
-    <Contactform title="Reach out, we don't bite."/>
-    <Features title="Let your home or business bask in the sun." data={featureCopy.who} />
+    <Contactform title="Reach out, we don't bite." />
+    <Features
+      title="Let your home or business bask in the sun."
+      data={featureCopy.who}
+    />
 
     <Brandcard />
   </Container>
-
 </Layout>
