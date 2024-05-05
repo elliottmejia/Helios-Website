@@ -1,0 +1,339 @@
+---
+let PLAINTEXTLOGO = true;
+//PLAINTEXTLOGO = false;
+interface Item {
+  title: string;
+  path: string;
+  children?: Item[];
+  badge?: string;
+}
+import logoBadge from "public/images/logo_badge.svg";
+import logoFull from "public/images/logo_long.svg";
+
+const menuitems: Item[] = [
+  {
+    title: "Services",
+    path: "/services",
+    children: [
+      { title: "Commercial", path: "/services/commercial" },
+      { title: "Residential", path: "/services/residential" },
+    ],
+  },
+  {
+    title: "About",
+    path: "/about",
+    badge: "",
+  },
+  {
+    title: "Blog",
+    path: "/blog",
+  },
+  {
+    title: "Contact",
+    path: "/contact",
+  },
+];
+
+import { Picture } from "astro:assets";
+---
+
+<div
+  class="max-w-screen-xl mx-auto container z-40 bg-white align-middle min-h-fit h-fit top-0 sticky left-0 mt-0 py-2 px-8 min-w-[100%]"
+  id="navbar"
+>
+  <header
+    class="flex flex-col lg:flex-row justify-between items-center my-0 w-100"
+  >
+    <div class="flex w-full lg:w-auto items-center justify-between">
+      <!-- LOGO AND TITLE -->
+      <div class="flex flex-inline align-middle">
+        <a
+          data-astro-prefetch="viewport"
+          href="/"
+          class="logo"
+          draggable="false"
+        >
+          <!-- Logo -->
+          {
+            PLAINTEXTLOGO ? (
+              <Picture
+                src={logoBadge}
+                alt="Helios Energy Logo"
+                width={50}
+                height={50}
+                class="mr-4"
+              />
+            ) : (
+              <Picture
+                src={logoFull}
+                alt="Helios Energy Logo"
+                height={75}
+                class="mr-4"
+              />
+            )
+          }
+          <!-- Endlogo -->
+        </a>
+        <!-- Title -->
+        {
+          PLAINTEXTLOGO && (
+            <div class="self-center font-bold inter" id="logo__text">
+              <a data-astro-prefetch="viewport" href="/" class="text-lg">
+                <span class="text-2xl">Helios Energy</span>
+              </a>
+            </div>
+          )
+        }
+      </div>
+      <!-- HAMBURGER -->
+      <div class="block BOOG lg:hidden">
+        <button id="astronav-menu" aria-label="Toggle Menu">
+          <svg
+            fill="currentColor"
+            class="w-[28px] h-[28px] text-neutral-content"
+            width="28"
+            height="28"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Toggle Menu</title>
+            <path
+              class="astronav-close-icon astronav-toggle hidden"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"
+            ></path>
+            <path
+              class="astronav-open-icon astronav-toggle"
+              fill-rule="evenodd"
+              d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- NAVIGATION -->
+
+    <nav
+      class="astronav-items astronav-toggle w-full lg:w-auto mt-2 lg:flex lg:mt-0 hidden"
+    >
+      <ul class="flex flex-col lg:flex-row lg:gap-3">
+        {
+          menuitems.map((item: Item) =>
+            item.children && item.children.length > 0 ? (
+              <li class="relative" data-key={item.title}>
+                <menu class="astronav-dropdown group" aria-expanded="false">
+                  <button class="flex items-center gap-1 w-full lg:w-auto lg:px-3 py-2 text-base-content hover:text-gray-900">
+                    <span>{item.title}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="3"
+                      stroke="currentColor"
+                      class="w-3 h-3 mt-0.5 group-open:rotate-180 toggle-chevron"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    class="astronav-dropdown dropdown-toggle hidden dropdown-group"
+                    aria-expanded="false"
+                  >
+                    <div class="lg:absolute w-full lg:w-48 z-10 lg:left-0 origin-top-left">
+                      <div class="px-3 lg:py-2 lg:bg-white lg:rounded-md lg:shadow lg:border flex flex-col">
+                        {item.children.map((child) => (
+                          <a
+                            data-astro-prefetch="viewport"
+                            href={child.path}
+                            class="py-1 text-gray-600 hover:text-gray-900"
+                            data-key={child.title}
+                          >
+                            {child.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </menu>
+              </li>
+            ) : (
+              <li data-key={item.title}>
+                <a
+                  data-astro-prefetch="viewport"
+                  href={item.path}
+                  class="flex lg:px-3 py-2 items-center hover:text-gray-900"
+                >
+                  <span>{item.title}</span>
+                </a>
+              </li>
+            )
+          )
+        }
+      </ul>
+    </nav>
+    <div>
+      <div class="hidden lg:flex items-center gap-4">
+        <a
+          data-astro-prefetch="viewport"
+          href="/contact?getQuote;"
+          class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800 border-2 border-transparent button astro-P5FXXAUY"
+          >Get a quote
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<script>
+  (function () {
+    const closeOnClick = false;
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile nav toggle
+      const menuButton = document.getElementById("astronav-menu");
+
+      menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+      // Dropdown menus
+      const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+      dropdownMenus.forEach((menu) => {
+        const button = menu.querySelector("button");
+        button &&
+          button.addEventListener("click", (event) =>
+            toggleDropdownMenu(event, menu, dropdownMenus)
+          );
+
+        // Handle Submenu Dropdowns
+        const dropDownSubmenus = menu.querySelectorAll(
+          ".astronav-dropdown-submenu"
+        );
+
+        dropDownSubmenus.forEach((submenu) => {
+          const submenuButton = submenu.querySelector("button");
+          submenuButton &&
+            submenuButton.addEventListener("click", (event) => {
+              event.stopImmediatePropagation();
+              console.log("click");
+              toggleSubmenuDropdown(event, submenu);
+            });
+        });
+      });
+
+      // Clicking away from dropdown will remove the dropdown class
+      document.addEventListener("click", closeAllDropdowns);
+
+      if (closeOnClick) {
+        handleCloseOnClick();
+      }
+    });
+
+    function toggleMobileNav() {
+      [...document.querySelectorAll(".astronav-toggle")].forEach(
+        (el: HTMLElement) => {
+          el.classList.toggle("hidden");
+        }
+      );
+    }
+
+    function toggleDropdownMenu(event, menu, dropdownMenus) {
+      toggleMenu(menu);
+
+      // Close one dropdown when selecting another
+      Array.from(dropdownMenus)
+        .filter((el) => el !== menu && !menu.contains(el))
+        .forEach(closeMenu);
+
+      event.stopPropagation();
+    }
+
+    function toggleSubmenuDropdown(event, submenu) {
+      event.stopPropagation();
+      toggleMenu(submenu);
+
+      // Close sibling submenus at the same nesting level
+      const siblingSubmenus = submenu
+        .closest(".astronav-dropdown")
+        .querySelectorAll(".astronav-dropdown-submenu");
+      Array.from(siblingSubmenus)
+        .filter((el) => el !== submenu && !submenu.contains(el))
+        .forEach(closeMenu);
+    }
+
+    function closeAllDropdowns(event) {
+      const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+      const dropdownParent = document.querySelectorAll(
+        ".astronav-dropdown, .astronav-dropdown-submenu"
+      );
+      const isButtonInsideDropdown = [
+        ...document.querySelectorAll(
+          ".astronav-dropdown button, .astronav-dropdown-submenu button, #astronav-menu"
+        ),
+      ].some((button) => button.contains(event.target));
+      if (!isButtonInsideDropdown) {
+        dropdownMenus.forEach((d) => {
+          // if (!d.contains(event.target)) {
+          d.classList.remove("open");
+          d.removeAttribute("open");
+          d.classList.add("hidden");
+          // }
+        });
+        dropdownParent.forEach((d) => {
+          d.classList.remove("open");
+          d.removeAttribute("open");
+          d.setAttribute("aria-expanded", "false");
+        });
+      }
+    }
+
+    function toggleMenu(menu) {
+      menu.classList.toggle("open");
+      const expanded = menu.getAttribute("aria-expanded") === "true";
+      menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+      menu.hasAttribute("open")
+        ? menu.removeAttribute("open")
+        : menu.setAttribute("open", "");
+
+      const dropdownToggle = menu.querySelector(".dropdown-toggle");
+      const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+      dropdownToggle.classList.toggle("hidden");
+      dropdownToggle.setAttribute(
+        "aria-expanded",
+        dropdownExpanded === "true" ? "false" : "true"
+      );
+    }
+
+    function closeMenu(menu) {
+      console.log("closing", menu);
+      menu.classList.remove("open");
+      menu.removeAttribute("open");
+      menu.setAttribute("aria-expanded", "false");
+      const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+      dropdownToggles.forEach((toggle) => {
+        toggle.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    function handleCloseOnClick() {
+      const navMenuItems = document.querySelector(".astronav-items");
+      const navToggle = document.getElementById("astronav-menu");
+      const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+      const MenuIcons: any = navToggle?.querySelectorAll(".astronav-toggle");
+
+      navLink &&
+        navLink.forEach((item: HTMLElement) => {
+          item.addEventListener("click", () => {
+            navMenuItems?.classList.add("hidden");
+            MenuIcons.forEach((el: HTMLElement) => {
+              el.classList.toggle("hidden");
+            });
+          });
+        });
+    }
+  })();
+</script>
