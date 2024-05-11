@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="text-center relative right-0 bottom-0 text-sm text-slate-400  pb-2 mt-2">
-          Copyright ©{new Date().getFullYear()} Honest Power. All rights
+          Copyright ©{new Date().getFullYear()} Helios Energy. All rights
           reserved.
         </p>
       </footer>

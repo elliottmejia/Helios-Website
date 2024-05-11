@@ -184,11 +184,11 @@ export default defineConfig({
             required: true,
           },
           {
-            type: 'boolean',
-            name: 'draft',
+            type: "boolean",
+            name: "draft",
             label: "Draft",
             required: true,
-          }
+          },
           {
             type: "string",
             name: "title",
