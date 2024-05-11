@@ -139,7 +139,7 @@ export default function Footer() {
                       className="intro-image"
                     />
                     <div className="address-text">
-                      21600 W Oxnard St Woodland Hills, CA 91367.
+                      2226 6th St A, Santa Monica, CA 90405
                     </div>
                   </div>
                   <div className="address-section mail-content">
