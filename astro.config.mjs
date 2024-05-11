@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
+import tina from "astro-tina";
 
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
@@ -18,7 +19,10 @@ export default defineConfig({
     tailwind(),
     mdx(),
     sitemap(),
-    react(),
+    react({
+      include: ["**.tsx"],
+    }),
+    tina(),
     partytown({
       config: {
         forward: ["dataLayer.push"],

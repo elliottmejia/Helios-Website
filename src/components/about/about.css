@@ -1,0 +1,10 @@
+.menu-active{
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000;
+    pointer-events: none;
+}
+.about__menu__item{
+    cursor: pointer;
+    padding-bottom: .2em;
+}

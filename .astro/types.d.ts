@@ -135,7 +135,16 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"blog": {
+		"about": {
+};
+"blog": {
+"FUCK.md": {
+	id: "FUCK.md";
+  slug: "fuck";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx": {
 	id: "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx";
   slug: "solar-savings-navigating-tax-benefits-of-going-solar";
@@ -183,6 +192,13 @@ declare module 'astro:content' {
 "robert-palmer.md": {
 	id: "robert-palmer.md";
   slug: "robert-palmer";
+  body: string;
+  collection: "team";
+  data: InferEntrySchema<"team">
+} & { render(): Render[".md"] };
+"tiny_cat.md": {
+	id: "tiny_cat.md";
+  slug: "tiny_cat";
   body: string;
   collection: "team";
   data: InferEntrySchema<"team">

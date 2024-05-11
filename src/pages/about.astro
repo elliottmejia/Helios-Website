@@ -1,63 +1,28 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import Container from "../components/container.astro";
-import Sectionhead from "../components/sectionhead.astro";
-import type { string } from "astro/zod";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import Sectionhead from "src/components/sectionhead.astro";
+import AboutLayout from "src/layouts/AboutLayout.astro";
+//import { AboutMenu } from "src/components/about";
+import { AboutContentData, type AboutData } from "src/content/about/AboutData";
+import { AboutMenu, AboutContent } from "src/components/about";
 
-// Filter team entries with 'draft: false' & date before current date
-const publishedTeamMembers = await getCollection("team", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
-});
+// type AboutData = {
+//   name: string;
+//   selector: string;
+//   format: string;
+// };
 ---
 
-<Layout title="About">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">About Us</Fragment>
-      <Fragment slot="desc">
-        First of all, we're passionate about solar...
-      </Fragment>
-    </Sectionhead>
-
-    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl text-gray-800">
-        Changing the world, one panel at a time.
-      </h2>
-      <p class="text-lg leading-relaxed text-slate-500">
-        We are a team of solar experts passionate about helping our customers
-        save money while reducing their carbon footprint. We are committed to
-        providing the highest quality solar panels and installation services to
-        our customers. We are proud to be a local business that has been serving
-        the greater Los Angeles area for over ten years.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-      {
-        publishedTeamMembers.map((teamMemberEntry) => (
-          <div class="group">
-            <div class="w-full aspect-square">
-              <Picture
-                src={teamMemberEntry.data.avatar.src}
-                alt={teamMemberEntry.data.avatar.alt}
-                sizes="(max-width: 800px) 100vw, 400px"
-                widths={[200, 400]}
-                width="280"
-                height="280"
-                class:list="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl w-[280px] h-[280px] object-cover object-center"
-              />
-            </div>
-
-            <div class="mt-4 text-center">
-              <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
-              <h3 class="text-sm text-slate-500">
-                {teamMemberEntry.data.title}
-              </h3>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </Container>
-</Layout>
+<AboutLayout title="Helios | About">
+  <div
+    class="flex flex-inline mx-auto w-fit gap-8 mt-8 justify-start
+    max-w-screen-sm
+    min-w-screen-sm
+    xl:max-w-screen-md
+    xl:min-w-screen-md"
+  >
+    <AboutMenu data={AboutContentData} active={0} />
+    <AboutContent />
+    <!-- <TinaMarkdown content={props.data.body} /> -->
+  </div>
+</AboutLayout>

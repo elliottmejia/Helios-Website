@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/container.astro";
 import Cta from "../../components/cta.astro";
-import {Picture} from 'astro:assets'
+import { Picture } from "astro:assets";
 
 // Generate a new path for every collection entry
 export const prerender = true;
@@ -14,19 +14,17 @@ export async function getStaticPaths() {
     params: { slug: entry.slug },
     props: { entry },
   }));
-
 }
-
 
 interface Proptypes {
   entry: any;
 }
 
 // Get the entry directly from the prop on render
-const { entry}:Proptypes = Astro.props;
+const { entry }: Proptypes = Astro.props;
 const { Content, remarkPluginFrontmatter } = await entry.render();
-
 ---
+
 <Layout title={entry.data.title}>
   <Container className="px-16">
     <div class="mx-auto max-w-3xl mt-14">
@@ -34,11 +32,18 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
         {entry.data.category}
       </span>
       <h1
-        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight"
+      >
         {entry.data.title}
       </h1>
 
-      <Picture src={entry.data.image.src} alt={entry.data.image.alt} height="400" width="500"class="rounded-md my-6 w-full object-cover aspect-video object-top BLOG_IMAGE" />
+      <Picture
+        src={entry.data.image.src}
+        alt={entry.data.image.alt}
+        height="400"
+        width="500"
+        class="rounded-md my-6 w-full object-cover aspect-video object-top BLOG_IMAGE"
+      />
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
         <span class="text-gray-400">
           {entry.data.author}
@@ -48,15 +53,17 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
         <span class="text-gray-400">•</span>
         <time
           class="text-gray-400"
-          datetime={entry.data.publishDate.toISOString()}>
+          datetime={entry.data.publishDate.toISOString()}
+        >
           {entry.data.publishDate.toDateString()}
         </time>
         <span class="text-gray-400 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
-            entry.data.tags.map((tag:any) => (
-              <span class="text-sm text-gray-500">#{tag}</span>
-            ))
+            entry?.data?.tags != "" &&
+              entry?.data?.tags.map((tag: any) => (
+                <span class="text-sm text-gray-500">#{tag}</span>
+              ))
           }
         </div>
       </div>
@@ -65,11 +72,12 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
     <div class="mx-auto prose prose-lg mt-6 max-w-3xl">
       <Content />
     </div>
-    <Cta title="Get a free solar consultation"
-        subtitle="We'll help you find the best solar solution for your home."  
-        cta="Get Started"
-        href="/contact"
-   />
+    <Cta
+      title="Get a free solar consultation"
+      subtitle="We'll help you find the best solar solution for your home."
+      cta="Get Started"
+      href="/contact"
+    />
 
     <div class="text-center mt-8">
       <a

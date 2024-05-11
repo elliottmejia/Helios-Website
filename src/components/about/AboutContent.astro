@@ -1,0 +1,42 @@
+---
+import {
+  AboutContentData,
+  dir,
+  type AboutData,
+} from "src/content/about/AboutData.ts";
+
+const getContent = async (location: string): Promise<string> => {
+  try {
+    const response = await fetch(location);
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    console.error(`Failed to fetch content from ${location}`, error);
+    return "";
+  }
+};
+
+type Content = { selector: string; content: string };
+let aboutContent: Content[] = [];
+
+const contentPromises = AboutContentData.map(async (data) => {
+  const location = `${dir}/${data.selector}.${data.format}`;
+  const content = await getContent(location);
+  return { selector: data.selector, content };
+});
+
+aboutContent = await Promise.all(contentPromises);
+---
+
+<script define:vars={AboutContentData}>
+  const getContent = async (url) => {
+    const response = await fetch(url);
+    const data = await response.text();
+    return data;
+  };
+
+  window.addEventListener("aboutmenu", function (e) {
+    const data = e.detail;
+    if (!data) return;
+  });
+</script>

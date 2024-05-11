@@ -178,3 +178,41 @@ h6 {
 .geist {
     font-family: 'GeistVF', 'Geist', sans-serif;
 }
+
+.rmd * {
+    line-height: 1.5em;
+    font-weight: initial;
+}
+
+.rmd h1 {
+    font-size: 4em;
+    color: red;
+}
+
+.rmd h2 {
+    font-size: 2em;
+}
+.rmd h3 {
+    font-size: 1.5em;
+}
+.rmd h4 {
+    font-size: 1.5em;
+
+}
+
+.rmd h5 {
+    font-size: 1.17em;
+}
+
+.rmd h6 {
+    font-size: 1em;
+}
+
+
+.rmd h3, .rmd h4, .rmd h5, .rmd h6{
+    margin: 1em 0 .5em;
+}
+
+.rmd h1, .rmd h2 {
+    margin: 0 0 .5em;
+}

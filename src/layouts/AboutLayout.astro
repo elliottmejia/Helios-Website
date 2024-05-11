@@ -1,0 +1,32 @@
+---
+import Layout from "./Layout.astro";
+import Sectionhead from "src/components/sectionhead.astro";
+
+// type AboutData = {
+//   name: string;
+//   selector: string;
+//   format: string;
+// };
+
+type Props = {
+  title: string;
+};
+const { title }: Props = Astro.props;
+---
+
+<Layout title={title}>
+  <Sectionhead>
+    <fragment slot="title">About us</fragment>
+    <fragment slot="desc">Helios, Greek god of the sun.</fragment>
+  </Sectionhead>
+  <div
+    class="flex flex-inline mx-auto w-fit gap-8 mt-8 justify-start
+    max-w-screen-sm
+    min-w-screen-sm
+    xl:max-w-screen-md
+    xl:min-w-screen-md"
+  >
+    <slot />
+  </div>
+</Layout>
+<script></script>

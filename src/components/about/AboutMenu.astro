@@ -1,0 +1,65 @@
+---
+const { active, data } = Astro.props;
+---
+
+<div>
+  <!-- MENU -->
+  <div class="flex flex-inline gap-2 h-fit mt-8">
+    <ul class="w-32">
+      {
+        data.map((d, idx) => (
+          <li
+            id={`menu-${idx}`}
+            data-idx={idx}
+            class={`about__menu__item ${
+              active === idx ? "menu-active" : ""
+            } text-gray-600`}
+          >
+            {d.name}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="border-r border-black"></div>
+  </div>
+</div>
+
+<script define:vars={{ active }}>
+  // Import the parse function from the path module
+  import { parse } from "path";
+
+  // Define a function to send data to the parent component
+  const sendDataToParent = (activeMenuItem) => {
+    // Create a detail object with the active menu item
+    const detail = { activeMenuItem: data };
+    // Create a new custom event with the detail object
+    const event = new CustomEvent("aboutmenu", { detail });
+    // Dispatch the event on the window object
+    window.dispatchEvent(event);
+  };
+
+  // Get all elements with the class "about__menu__item"
+  const menuItems = document.querySelectorAll(".about__menu__item");
+
+  menuItems.forEach((item) => {
+    // Get the value of the data-idx attribute
+    let dataIdx = item.getAttribute("data-idx");
+    // If dataIdx is not defined, return early
+    if (!dataIdx) return;
+    // Try to convert dataIdx to a number
+    if ((dataIdx = parseInt(dataIdx) === undefined)) {
+      // If the conversion fails, log an error message
+      console.error("data-idx casting failure at menu-" + dataIdx);
+    }
+    // If the active menu item is the current item, add the "menu-active" class
+    if (active === dataIdx) {
+      item.classList.add("menu-active");
+    }
+    // Add a click event listener to the item
+    item.addEventListener("click", () => {
+      // When the item is clicked, set active to dataIdx and send dataIdx to the parent component
+      active = dataIdx;
+      sendDataToParent(dataIdx);
+    });
+  });
+</script>

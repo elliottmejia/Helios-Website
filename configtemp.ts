@@ -2,13 +2,6 @@ import { validateHeaderValue } from "http";
 import { defineConfig } from "tinacms";
 import type { Field } from "tinacms";
 
-interface GroupConfig {
-  name: string;
-  component: "group";
-  label?: string;
-  fields: Field[];
-}
-
 interface GroupListConfig {
   component: "group-list";
   name: string;
@@ -30,6 +23,7 @@ const branch =
 
 export default defineConfig({
   branch,
+
   // Get this from tina.io
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   // Get this from tina.io
@@ -49,7 +43,7 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "public/tina_assets",
+      mediaRoot: "",
       publicFolder: "public",
     },
   },
@@ -96,7 +90,6 @@ export default defineConfig({
             type: "boolean",
             name: "draft",
             label: "Draft",
-            required: true,
           },
           {
             name: "publishDate",
@@ -132,112 +125,18 @@ export default defineConfig({
               },
             ],
           },
+
           {
             name: "tags",
             label: "Tags",
             type: "string",
             list: true,
-            required: false,
-          },
-        ],
-      },
-      {
-        name: "about",
-        label: "About",
-        path: "src/content/about",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "string",
-            name: "snippet",
-            label: "Snippet",
-          },
-          {
-            type: "string",
-            name: "menu_label",
-            label: "Menu Label",
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            required: true,
-            isBody: true,
-          },
-        ],
-      },
-      {
-        name: "team",
-        label: "Team",
-        path: "src/content/team",
-        fields: [
-          {
-            type: "string",
-            name: "name",
-            label: "Name",
-            required: true,
-          },
-          {
-            type: 'boolean',
-            name: 'draft',
-            label: "Draft",
-            required: true,
-          }
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            required: true,
-          },
-          {
-            name: "avatar",
-            label: "Avatar",
-            type: "object",
-            required: true,
-            fields: [
-              {
-                name: "src",
-                label: "Image Source",
-                type: "image",
-                required: true,
-              },
-              {
-                name: "alt",
-                label: "Image Alt",
-                type: "string",
-              },
-            ],
-          },
-          {
-            name: "publishDate",
-            label: "Date Posted",
-            type: "string",
-            ui: {
-              component: "date",
-            },
-            required: true,
           },
         ],
       },
     ],
   },
 });
-
-// Team
-// draft: false
-// name: "Elliott Mejia"
-// title: "Web & Marketing"
-// avatar: {
-//     src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?&fit=crop&w=280",
-//     alt: "Janette Lynch"
-// }
-// publishDate: "2022-11-07 15:39"
 
 // draft: false
 
@@ -251,4 +150,3 @@ export default defineConfig({
 // category: "Technology"
 // author: "Elliott Mejia"
 // tags: ["solar", "tech", "innovation"]
-// draft: false
