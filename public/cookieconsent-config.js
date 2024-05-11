@@ -36,7 +36,7 @@ CookieConsent.run({
       en: {
         consentModal: {
           title: "We use cookies",
-          description: "Cookie modal description",
+          description: "...but your info stays between us.",
           acceptAllBtn: "Accept all",
           acceptNecessaryBtn: "Reject all",
           showPreferencesBtn: "Manage Individual preferences",

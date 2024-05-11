@@ -138,13 +138,13 @@ declare module 'astro:content' {
 		"about": {
 };
 "blog": {
-"FUCK.md": {
-	id: "FUCK.md";
+"FUCK.mdx": {
+	id: "FUCK.mdx";
   slug: "fuck";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx": {
 	id: "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx";
   slug: "solar-savings-navigating-tax-benefits-of-going-solar";
@@ -166,43 +166,43 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"test.md": {
-	id: "test.md";
+"test.mdx": {
+	id: "test.mdx";
   slug: "test";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 };
 "team": {
-"janette-lynch.md": {
-	id: "janette-lynch.md";
+"janette-lynch.mdx": {
+	id: "janette-lynch.mdx";
   slug: "janette-lynch";
   body: string;
   collection: "team";
   data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-"marcell-ziemann.md": {
-	id: "marcell-ziemann.md";
+} & { render(): Render[".mdx"] };
+"marcell-ziemann.mdx": {
+	id: "marcell-ziemann.mdx";
   slug: "marcell-ziemann";
   body: string;
   collection: "team";
   data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-"robert-palmer.md": {
-	id: "robert-palmer.md";
+} & { render(): Render[".mdx"] };
+"robert-palmer.mdx": {
+	id: "robert-palmer.mdx";
   slug: "robert-palmer";
   body: string;
   collection: "team";
   data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
-"tiny_cat.md": {
-	id: "tiny_cat.md";
+} & { render(): Render[".mdx"] };
+"tiny_cat.mdx": {
+	id: "tiny_cat.mdx";
   slug: "tiny_cat";
   body: string;
   collection: "team";
   data: InferEntrySchema<"team">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 };
 
 	};

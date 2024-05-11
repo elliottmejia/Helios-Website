@@ -60,6 +60,7 @@ export default defineConfig({
         name: "post",
         label: "Posts",
         path: "src/content/blog",
+        format: "mdx",
         fields: [
           {
             type: "string",
@@ -145,6 +146,7 @@ export default defineConfig({
         name: "about",
         label: "About",
         path: "src/content/about",
+        format: "mdx",
         fields: [
           {
             type: "string",
@@ -176,6 +178,7 @@ export default defineConfig({
         name: "team",
         label: "Team",
         path: "src/content/team",
+        format: "mdx",
         fields: [
           {
             type: "string",
