@@ -23,6 +23,7 @@ interface GroupListConfig {
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
+  "main" ||
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
