@@ -6,6 +6,7 @@ const branch =
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
+  
 
 export default defineConfig({
   branch,
