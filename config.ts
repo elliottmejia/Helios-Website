@@ -1,4 +1,25 @@
-import { defineConfig, type Field } from "tinacms";
+import { validateHeaderValue } from "http";
+import { defineConfig } from "tinacms";
+import type { Field } from "tinacms";
+
+interface GroupConfig {
+  name: string;
+  component: "group";
+  label?: string;
+  fields: Field[];
+}
+
+interface GroupListConfig {
+  component: "group-list";
+  name: string;
+  fields: Field[];
+  label?: string;
+  defaultItem?: object | (() => object);
+  itemProps?(item: object): {
+    key?: string;
+    label?: string;
+  };
+}
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -9,11 +30,18 @@ const branch =
 
 export default defineConfig({
   branch,
-
   // Get this from tina.io
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
+  search: {
+    tina: {
+      indexerToken: "process.env.TINA_SEARCH_TOKEN",
+      stopwordLanguages: ["eng"],
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100,
+  },
 
   build: {
     outputFolder: "admin",
@@ -203,3 +231,27 @@ export default defineConfig({
     ],
   },
 });
+
+// Team
+// draft: false
+// name: "Elliott Mejia"
+// title: "Web & Marketing"
+// avatar: {
+//     src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?&fit=crop&w=280",
+//     alt: "Janette Lynch"
+// }
+// publishDate: "2022-11-07 15:39"
+
+// draft: false
+
+// title: "Riding the Solar Wave: Exploring Emerging Technologies Shaping the Future of Solar Energy"
+// snippet: "Many new technologies are emerging in the solar industry, promising to reshape the future of solar energy."
+// image: {
+//     src: '/blogimages/warpypanels.jpg',
+//     alt: "Solar panels on a curved roof"
+// }
+// publishDate: "2023-11-20 4:45"
+// category: "Technology"
+// author: "Elliott Mejia"
+// tags: ["solar", "tech", "innovation"]
+// draft: false
