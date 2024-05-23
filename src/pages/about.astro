@@ -37,7 +37,6 @@ const aboutPosts = await getCollection("about");
   const data = aboutPosts;
   // make this work for all with idx
   const posts = document.querySelectorAll(".post");
-  // console.log(posts);
 
   activeAboutItem.subscribe((value) => {
     posts.forEach((item, idx) => {
@@ -46,8 +45,8 @@ const aboutPosts = await getCollection("about");
       if (idx === value) {
         item.classList.remove("hidden");
         item.classList.add("block");
-        // console.log("post", idx, "set as active");
-        // console.log("store reflects as ", activeAboutItem.get());
+        console.log("post", idx, "set as active");
+        console.log("store reflects as ", activeAboutItem.get());
         return;
       }
       item.classList.add("hidden");
