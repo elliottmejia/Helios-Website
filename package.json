@@ -10,7 +10,8 @@
         "build:node": "pnpx astro build --node --root ./dist",
         "preview": "astro preview",
         "astro": "astro",
-        "tina": "tinacms dev -c \"astro dev --port 4321\""
+        "tina": "tinacms dev -c \"astro dev --port 4321\"",
+        "tinabuild": "tinacms build"
     },
     "dependencies": {
         "@astrojs/check": "^0.5.10",
