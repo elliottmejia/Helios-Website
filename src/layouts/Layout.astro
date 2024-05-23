@@ -4,6 +4,7 @@ import Footer from "../components/footer.astro";
 import Navbar from "../components/navbar/navbar2.astro";
 import { sharedValidateOptions } from "node_modules/@astrojs/vercel/dist/image/shared";
 //import { ViewTransitions } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 const siteImage: string = "../../public/opengraph.png";
 // import { Icon } from "astro-icon";
@@ -29,6 +30,7 @@ const makeTitle = title ? title : "Helios Energy";
 <!doctype html>
 <html lang="en" class="light">
   <head>
+    <SpeedInsights />
     <GoogleAnalytics />
     <script>
       if (
