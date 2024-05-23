@@ -1,16 +1,13 @@
 ---
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import Sectionhead from "src/components/sectionhead.astro";
 import AboutLayout from "src/layouts/AboutLayout.astro";
-//import { AboutMenu } from "src/components/about";
-import { AboutContentData, type AboutData } from "src/content/about/AboutData";
 import { AboutMenu, AboutContent } from "src/components/about";
 
-// type AboutData = {
-//   name: string;
-//   selector: string;
-//   format: string;
-// };
+import { getCollection } from "astro:content";
+import Markdown from "react-markdown";
+
+const aboutPosts = await getCollection("about");
+
+// console.log(content);
 ---
 
 <AboutLayout title="Helios | About">
@@ -21,8 +18,12 @@ import { AboutMenu, AboutContent } from "src/components/about";
     xl:max-w-screen-md
     xl:min-w-screen-md"
   >
-    <AboutMenu data={AboutContentData} active={0} />
-    <AboutContent />
-    <!-- <TinaMarkdown content={props.data.body} /> -->
+    <AboutMenu data={aboutPosts} active={0} />
+    {
+      aboutPosts.map((d) => {
+        return <AboutContent data={d} />;
+      })
+    }
+    <!-- <AboutContent /> -->
   </div>
 </AboutLayout>

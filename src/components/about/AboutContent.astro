@@ -1,42 +1,30 @@
 ---
-import {
-  AboutContentData,
-  dir,
-  type AboutData,
-} from "src/content/about/AboutData.ts";
+import Markdown from "react-markdown";
 
-const getContent = async (location: string): Promise<string> => {
-  try {
-    const response = await fetch(location);
-    const data = await response.text();
-    return data;
-  } catch (error) {
-    console.error(`Failed to fetch content from ${location}`, error);
-    return "";
-  }
+const { data } = Astro.props;
+type data = {
+  id: "Title.mdx";
+  slug: "title";
+  body: "\nBody\n";
+  collection: "about";
+  data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
+  render: any; //[AsyncFunction: render]
 };
-
-type Content = { selector: string; content: string };
-let aboutContent: Content[] = [];
-
-const contentPromises = AboutContentData.map(async (data) => {
-  const location = `${dir}/${data.selector}.${data.format}`;
-  const content = await getContent(location);
-  return { selector: data.selector, content };
-});
-
-aboutContent = await Promise.all(contentPromises);
+console.log(data.body);
 ---
 
-<script define:vars={AboutContentData}>
-  const getContent = async (url) => {
-    const response = await fetch(url);
-    const data = await response.text();
-    return data;
-  };
+<div id={`post-${data.slug}`} class="hidden post">
+  <Markdown>{data.body}</Markdown>
+</div>
+
+<script define:vars={{ data }}>
+  const post = document.getElementById(`post-${data.slug}`);
 
   window.addEventListener("aboutmenu", function (e) {
-    const data = e.detail;
-    if (!data) return;
+    if (e.detail.slug === data.slug) {
+      post.classList.remove("hidden");
+    } else if (!post.classList.contains("hidden")) {
+      post.classList.add("hidden");
+    }
   });
 </script>
