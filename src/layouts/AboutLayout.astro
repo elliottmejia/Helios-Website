@@ -42,7 +42,7 @@ const { title }: Props = Astro.props;
   </div>
 </Layout>
 <script type="module" define:vars={{ aboutPosts }}>
-  import { activeAboutItem } from "/src/data/store.ts";
+  import { activeAboutItem } from "src/data/store.ts";
   const heading = document.getElementById("about-page-heading");
   activeAboutItem.subscribe((index) => {
     heading.innerHTML = aboutPosts[index].data.menu_label;
