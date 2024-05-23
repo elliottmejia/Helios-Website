@@ -15,12 +15,17 @@ const { title }: Props = Astro.props;
 ---
 
 <Layout title={title}>
-  <Sectionhead>
-    <fragment slot="title">About us</fragment>
-    <fragment slot="desc">Helios, Greek god of the sun.</fragment>
-  </Sectionhead>
+  <div class="align-left ml-8 mt-4">
+    <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      <slot name="title">About Us</slot>
+    </h1>
+    <p class="text-lg mt-4 text-slate-600">
+      <h2 class="">Helios, Greek God of the Sun</h2>
+    </p>
+  </div>
+  <hr class="w-[25%] ml-8 bg-black border-none h-[1px]" />
   <div
-    class="flex flex-inline mx-auto w-fit gap-8 mt-8 justify-start
+    class="flex flex-inline w-fit gap-8 mt-0 justify-start
     max-w-screen-sm
     min-w-screen-sm
     xl:max-w-screen-md

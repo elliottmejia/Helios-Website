@@ -6,7 +6,6 @@ import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 import tina from "astro-tina";
-import { collections } from "./src/content/config.mjs";
 
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
@@ -32,9 +31,6 @@ export default defineConfig({
   ],
   output: "hybrid",
   adapter: vercel(),
-  content: {
-    collections,
-  },
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },

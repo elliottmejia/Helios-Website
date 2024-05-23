@@ -4,9 +4,9 @@ interface Props {
   id?: string;
 }
 
-const { className, id } :Props = Astro.props;
-let cn = "debug working, props are not"
+const { className, id }: Props = Astro.props;
 ---
-<div class={`max-w-screen-xl mx-auto container ${className || ""}`} id={id || ""}>
+
+<div class={` mx-auto container ${className || ""}`} id={id || ""}>
   <slot />
 </div>

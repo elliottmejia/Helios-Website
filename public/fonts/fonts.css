@@ -1,3 +1,13 @@
+:root {
+    --2: #eae6e0;
+    --3: #232322;
+    --4: #FEE006;
+    --1: #f2f0ee;
+    --5: #3DBFEF;
+    --radius--small: .25rem;
+    --radius--large: .75rem;
+    --radius--medium: .5rem;
+}
 /* Geist */
 @font-face {
     font-family: 'Geist';
@@ -145,6 +155,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 p{
     font-family: 'GeistVF', 'Geist', sans-serif;
+    line-height: 1.5em;
+    page-break-after: auto;
 }
 
 h1 {
@@ -179,40 +191,84 @@ h6 {
     font-family: 'GeistVF', 'Geist', sans-serif;
 }
 
-.rmd * {
-    line-height: 1.5em;
-    font-weight: initial;
+.md * {
+    line-height: 1.6;
+    font-weight: 500;
 }
 
-.rmd h1 {
-    font-size: 4em;
-    color: red;
-}
-
-.rmd h2 {
-    font-size: 2em;
-}
-.rmd h3 {
-    font-size: 1.5em;
-}
-.rmd h4 {
-    font-size: 1.5em;
+.md h1 {
+    font-size: 2.986rem;
 
 }
 
-.rmd h5 {
-    font-size: 1.17em;
+.md h2 {
+    font-size: 2.488rem;
+}
+.md h3 {
+    font-size:2.074rem;
+}
+.md h4 {
+    font-size: 1.728rem;
+
 }
 
-.rmd h6 {
-    font-size: 1em;
+.md h5 {
+    font-size: 1.44rem;
 }
 
-
-.rmd h3, .rmd h4, .rmd h5, .rmd h6{
-    margin: 1em 0 .5em;
+.md h6 {
+    font-size: 1.2rem;
+}
+.md p{
+    font-size:1rem;
+}
+.md small{
+    font-size: 0.833rem;
 }
 
-.rmd h1, .rmd h2 {
-    margin: 0 0 .5em;
+.md ol{
+    list-style-type: decimal;
+    margin-left: 1.5em;
+
+}
+.md ul > li{
+    margin-bottom: 0.5em;
+    list-style-type: square;
+    list-style-position: inside;
+}
+.md li > ul > li{
+    list-style-type: circle;
+    list-style-position:inside;
+    text-indent: 1em;
+}
+.md li > ul {
+    margin-top: .4rem;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.022em;
+}
+
+.md h1, .md h2 {
+    margin: 0 0 0.2em;
+}
+
+.md code {
+    font-size: 0.9em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #24292e;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+}
+.md a {
+    color: var(--5);
+    text-decoration: none;
+    background-color: transparent;
+    font-weight: 500;
 }

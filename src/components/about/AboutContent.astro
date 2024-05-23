@@ -1,30 +1,22 @@
 ---
-import Markdown from "react-markdown";
+import { marked } from "marked";
+import { activeAboutItem } from "src/data/store.ts";
 
-const { data } = Astro.props;
-type data = {
-  id: "Title.mdx";
-  slug: "title";
-  body: "\nBody\n";
-  collection: "about";
-  data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
-  render: any; //[AsyncFunction: render]
-};
-console.log(data.body);
+const { data, active, idx } = Astro.props;
+// type data = {
+//   id: "Title.mdx";
+//   slug: "title";
+//   body: "\nBody\n";
+//   collection: "about";
+//   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
+//   render: any; //[AsyncFunction: render]
+// };
+const body = marked.parse(data.body);
 ---
 
-<div id={`post-${data.slug}`} class="hidden post">
-  <Markdown>{data.body}</Markdown>
-</div>
-
-<script define:vars={{ data }}>
-  const post = document.getElementById(`post-${data.slug}`);
-
-  window.addEventListener("aboutmenu", function (e) {
-    if (e.detail.slug === data.slug) {
-      post.classList.remove("hidden");
-    } else if (!post.classList.contains("hidden")) {
-      post.classList.add("hidden");
-    }
-  });
-</script>
+<div
+  id={`post-${data.slug}`}
+  data-idx={idx}
+  class=`post md ${!active && "hidden"}`
+  set:html={body}
+/>

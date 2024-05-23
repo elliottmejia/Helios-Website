@@ -37,16 +37,24 @@ const menuitems: Item[] = [
 import { Picture } from "astro:assets";
 ---
 
+<style>
+  #navbar {
+    box-shadow:
+      rgb(204, 219, 232) 3px 3px 6px 0px inset,
+      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  }
+</style>
+
 <div
-  class="max-w-screen-xl mx-auto container z-40 bg-white align-middle min-h-fit h-fit top-0 sticky left-0 mt-0 py-2 px-8 min-w-[100%]"
+  class="max-w-screen-xl mx-auto container z-40 bg-[#fefefe] align-middle min-h-fit h-16 md:h-24 content-around top-0 sticky left-0 mt-0 py-2 px-4 md:px-8 min-w-[100%]"
   id="navbar"
 >
   <header
     class="flex flex-col lg:flex-row justify-between items-center my-0 w-100"
   >
-    <div class="flex w-full lg:w-auto items-center justify-between">
+    <div class="flex w-full lg:w-auto items-left justify-between">
       <!-- LOGO AND TITLE -->
-      <div class="flex flex-inline align-middle">
+      <div class={`flex flex-inline align-middle ml-0 `}>
         <a
           data-astro-prefetch="viewport"
           href="/"
@@ -56,13 +64,23 @@ import { Picture } from "astro:assets";
           <!-- Logo -->
           {
             PLAINTEXTLOGO ? (
-              <Picture
-                src={logoBadge}
-                alt="Helios Energy Logo"
-                width={50}
-                height={50}
-                class="mr-4"
-              />
+              <div class="self-center font-bold inter" id="logo__text">
+                <a
+                  data-astro-prefetch="viewport"
+                  href="/"
+                  class="text-lg flex flex-inline"
+                >
+                  <Picture
+                    src={logoBadge}
+                    alt="Helios Energy Logo"
+                    width={50}
+                    height={50}
+                    class="mr-4 block md:hidden  left-4 top-4"
+                  />
+                  <span class="text-4xl hidden md:block">Helios&nbsp</span>
+                  <span class="text-4xl block md:hidden">Helios Energy</span>
+                </a>
+              </div>
             ) : (
               <Picture
                 src={logoFull}
@@ -77,11 +95,22 @@ import { Picture } from "astro:assets";
         <!-- Title -->
         {
           PLAINTEXTLOGO && (
-            <div class="self-center font-bold inter" id="logo__text">
-              <a data-astro-prefetch="viewport" href="/" class="text-lg">
-                <span class="text-2xl">Helios Energy</span>
-              </a>
-            </div>
+            <a
+              data-astro-prefetch="viewport"
+              href="/"
+              class="text-lg flex flex-inline"
+            >
+              <Picture
+                src={logoBadge}
+                alt="Helios Energy Logo"
+                width={50}
+                height={50}
+                class="mr-4 hidden md:block"
+              />
+              <div class="self-center font-bold inter" id="logo__text">
+                <span class="text-4xl hidden md:block">Energy</span>
+              </div>
+            </a>
           )
         }
       </div>

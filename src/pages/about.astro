@@ -1,9 +1,9 @@
 ---
 import AboutLayout from "src/layouts/AboutLayout.astro";
 import { AboutMenu, AboutContent } from "src/components/about";
+import { activeAboutItem } from "src/data/store.ts";
 
 import { getCollection } from "astro:content";
-import Markdown from "react-markdown";
 
 const aboutPosts = await getCollection("about");
 
@@ -11,19 +11,43 @@ const aboutPosts = await getCollection("about");
 ---
 
 <AboutLayout title="Helios | About">
-  <div
-    class="flex flex-inline mx-auto w-fit gap-8 mt-8 justify-start
-    max-w-screen-sm
-    min-w-screen-sm
-    xl:max-w-screen-md
-    xl:min-w-screen-md"
-  >
-    <AboutMenu data={aboutPosts} active={0} />
-    {
-      aboutPosts.map((d) => {
-        return <AboutContent data={d} />;
-      })
-    }
-    <!-- <AboutContent /> -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 ml-8 mt-0 max-w-screen-md">
+    <div class="md:col-span-1">
+      <AboutMenu data={aboutPosts} active={0} />
+    </div>
+    <div class="md:col-span-3">
+      {
+        aboutPosts.map((d, idx) => {
+          const activeContent = activeAboutItem.get() || 0;
+          if (idx === activeContent) {
+            return <AboutContent data={d} idx={idx} active={true} />;
+          }
+          return <AboutContent data={d} active={false} />;
+        })
+      }
+    </div>
   </div>
 </AboutLayout>
+
+<script lang="ts" type="module" define:vars={{ aboutPosts }}>
+  import { activeAboutItem } from "/src/data/store.ts";
+  const data = aboutPosts;
+  // make this work for all with idx
+  const posts = document.querySelectorAll(".post");
+  console.log(posts);
+
+  activeAboutItem.subscribe((value) => {
+    posts.forEach((item, idx) => {
+      console.log(item, idx);
+      item.classList.remove("block");
+      if (idx === value) {
+        item.classList.remove("hidden");
+        item.classList.add("block");
+        console.log("post", idx, "set as active");
+        console.log("store reflects as ", activeAboutItem.get());
+        return;
+      }
+      item.classList.add("hidden");
+    });
+  });
+</script>

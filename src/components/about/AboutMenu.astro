@@ -1,5 +1,9 @@
 ---
-const { active, data } = Astro.props;
+import "./about.css";
+import type { StoreValue } from "nanostores";
+import { activeAboutItem } from "src/data/store.ts";
+const { data } = Astro.props;
+type StoreType = StoreValue<typeof data>;
 type data = {
   id: "Title.mdx";
   slug: "title";
@@ -10,7 +14,7 @@ type data = {
 }[];
 ---
 
-<div>
+<div class="about-menu">
   <!-- MENU -->
   <div class="flex flex-inline gap-2 h-fit mt-8">
     <ul class="">
@@ -18,10 +22,11 @@ type data = {
         data.map((d, idx) => (
           <li
             data-slug={d.slug}
-            class={`about__menu__item ${
-              active === idx ? "menu-active" : ""
-            } text-gray-600
-            hover:underline
+            data-idx={idx}
+            class={`about__menu__item  text-gray-600
+            ${activeAboutItem.get() === idx ? "menu-active" : ""}
+            transition-all duration-200 ease-out
+            hover:text-black
             hover:cursor-pointer
             w-fit
             `}
@@ -35,22 +40,29 @@ type data = {
   </div>
 </div>
 
-<script define:vars={{ active, data }}>
-  const sendDataToParent = (activeMenuItem) => {
-    const detail = { activeMenuItem: data };
-    const event = new CustomEvent("aboutmenu", { detail });
-    window.dispatchEvent(event);
-  };
+<script lang="ts" type="module">
+  import { activeAboutItem } from "/src/data/store.ts";
 
   const menuItems = document.querySelectorAll(".about__menu__item");
 
-  menuItems.forEach((item) => {
-    let slug = item.getAttribute("data-slug");
+  // Listen to changes in the activeAboutItem store
+  activeAboutItem.listen((value) => {
+    menuItems.forEach((item, idx) => {
+      item.classList.remove("menu-active");
+      if (idx === value) {
+        item.classList.add("menu-active");
+        console.log("index", idx, "set as active");
+        console.log("store reflects as ", activeAboutItem.get());
+      }
+    });
+  });
 
-    if (!slug) throw new Error(`No slug found on menu item ${item}`);
-
+  // Add click event listeners to menu items
+  menuItems.forEach((item, idx) => {
     item.addEventListener("click", () => {
-      sendDataToParent(slug);
+      if (!item.classList.contains("menu-active")) {
+        activeAboutItem.set(idx);
+      }
     });
   });
 </script>
