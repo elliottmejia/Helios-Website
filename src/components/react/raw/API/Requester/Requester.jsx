@@ -10,8 +10,8 @@ export default function RequestUtility(){
     })
         .then(response => response.json())
         .then(data => {
-            // Handle the data from the response
-            console.log(data);
+          // Handle the data from the response
+          // console.log(data);
         })
         .catch(error => {
             // Handle any errors that occurred during the fetch

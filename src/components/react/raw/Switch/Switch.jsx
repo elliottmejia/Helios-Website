@@ -20,11 +20,11 @@ export default function Switch(props) {
     const targetRef = useRef(null);
 
     const toggleSwitch = () => {
-        setIsChecked(!isChecked);
-        console.log(targetRef);
-        if (targetRef.current){
-            targetRef.current.style.display = isChecked ? 'block' : 'none';
-        }
+      setIsChecked(!isChecked);
+      // console.log(targetRef);
+      if (targetRef.current) {
+        targetRef.current.style.display = isChecked ? "block" : "none";
+      }
     }
     useEffect(() => {
         // Use useEffect to set the ref when the component is mounted

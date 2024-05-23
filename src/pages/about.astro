@@ -20,11 +20,12 @@ const aboutPosts = await getCollection("about");
     <div class="md:col-span-3">
       {
         aboutPosts.map((d, idx) => {
+          // console.log("idx", idx);
           const activeContent = activeAboutItem.get() || 0;
           if (idx === activeContent) {
-            return <AboutContent data={d} idx={idx} active={true} />;
+            return <AboutContent idx={idx} active={true} />;
           }
-          return <AboutContent data={d} active={false} />;
+          return <AboutContent idx={idx} active={false} />;
         })
       }
     </div>
@@ -36,11 +37,11 @@ const aboutPosts = await getCollection("about");
   const data = aboutPosts;
   // make this work for all with idx
   const posts = document.querySelectorAll(".post");
-  console.log(posts);
+  // console.log(posts);
 
   activeAboutItem.subscribe((value) => {
     posts.forEach((item, idx) => {
-      console.log(item, idx);
+      // console.log(item, idx);
       item.classList.remove("block");
       if (idx === value) {
         item.classList.remove("hidden");

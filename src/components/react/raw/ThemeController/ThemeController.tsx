@@ -10,14 +10,14 @@ export default function ThemeController() {
 
     // Set the theme on initial render and when it changes
     useEffect(() => {
-        const selectedTheme = prefersToggleTheme ? themes[0] : themes[1];
-        document.documentElement.setAttribute("data-theme", selectedTheme);
-        console.log("LS", localStorage.getItem("prefersThemeCustom"));
-        console.log("Theme in component: ", selectedTheme);
-        console.log("Theme in markup: ", document.documentElement.getAttribute("data-theme"));
+      const selectedTheme = prefersToggleTheme ? themes[0] : themes[1];
+      document.documentElement.setAttribute("data-theme", selectedTheme);
+      // console.log("LS", localStorage.getItem("prefersThemeCustom"));
+      // console.log("Theme in component: ", selectedTheme);
+      // console.log("Theme in markup: ", document.documentElement.getAttribute("data-theme"));
 
-        // Save the theme preference in local storage
-        localStorage.setItem('prefersThemeCustom', prefersToggleTheme.toString());
+      // Save the theme preference in local storage
+      localStorage.setItem("prefersThemeCustom", prefersToggleTheme.toString());
     }, [prefersToggleTheme]);
 
     // Handle theme change when the checkbox is clicked

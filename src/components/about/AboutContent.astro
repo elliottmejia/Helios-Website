@@ -1,30 +1,16 @@
 ---
-// import { marked } from "marked";
+const { active, idx } = Astro.props;
 
-const { data, active, idx } = Astro.props;
+const glob = await Astro.glob("/src/content/about/*.mdx");
+const file = glob[idx];
 
-import { Content } from "/src/content/about/Example-Markdown.mdx";
+if (!file) {
+  throw new Error(`No file found at index ${idx}`);
+}
 
-// type data = {
-//   id: "Title.mdx";
-//   slug: "title";
-//   body: "\nBody\n";
-//   collection: "about";
-//   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
-//   render: any; //[AsyncFunction: render]
-// };
-// marked.setOptions({
-//   pedantic: false,
-//   // smartLists: true,
-//   // smartypants: true,
-// });
-// const body = marked.parse(data.body);
+const { Content } = file;
 ---
 
-<div
-  id={`post-${data.slug}`}
-  data-idx={idx}
-  class=`post md ${!active && "hidden"}`
->
-  <Content />
+<div data-idx={idx} class=`post md ${!active && "hidden"}`>
+  <Content class="md" />
 </div>

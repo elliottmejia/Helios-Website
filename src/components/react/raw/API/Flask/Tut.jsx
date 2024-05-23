@@ -8,8 +8,8 @@ export default function Tut(){
             res => res.json()
         ).then(
             data => {
-                setData(data)
-                console.log(data)
+              setData(data);
+              // console.log(data)
             }
         )
     },[])

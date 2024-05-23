@@ -14,22 +14,28 @@ export default function HeroA() {
 
     useEffect(() => {
         const updateTheme = () => {
-            const newTheme = document.querySelector("html").getAttribute("data-theme");
-            console.log("Theme updated:", newTheme);
-            setTheme(newTheme);
+          const newTheme = document
+            .querySelector("html")
+            .getAttribute("data-theme");
+          // console.log("Theme updated:", newTheme);
+          setTheme(newTheme);
         };
 
         // Initial update
         updateTheme();
 
         // Add event listener for theme changes
-        document.querySelector("html").addEventListener("theme-change", updateTheme);
-        console.log("Event listener added for theme changes");
+        document
+          .querySelector("html")
+          .addEventListener("theme-change", updateTheme);
+        // console.log("Event listener added for theme changes");
 
         // Cleanup the event listener on component unmount
         return () => {
-            document.querySelector("html").removeEventListener("theme-change", updateTheme);
-            console.log("Event listener removed on component unmount");
+          document
+            .querySelector("html")
+            .removeEventListener("theme-change", updateTheme);
+          // console.log("Event listener removed on component unmount");
         };
     }, []);
 
