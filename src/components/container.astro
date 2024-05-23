@@ -7,6 +7,12 @@ interface Props {
 const { className, id }: Props = Astro.props;
 ---
 
+<style>
+  container:has(> .hero) {
+    width: 100vw !important;
+  }
+</style>
+
 <div class={` mx-auto container ${className || ""}`} id={id || ""}>
   <slot />
 </div>

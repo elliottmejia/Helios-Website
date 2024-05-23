@@ -11,7 +11,9 @@ const aboutPosts = await getCollection("about");
 ---
 
 <AboutLayout title="Helios | About">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 ml-8 mt-0 max-w-screen-md">
+  <div
+    class="grid grid-cols-1 md:grid-cols-4 gap-8 ml-8 mt-0 max-w-screen min-h-[300px] pt-8"
+  >
     <div class="md:col-span-1">
       <AboutMenu data={aboutPosts} active={0} />
     </div>
@@ -43,11 +45,47 @@ const aboutPosts = await getCollection("about");
       if (idx === value) {
         item.classList.remove("hidden");
         item.classList.add("block");
-        console.log("post", idx, "set as active");
-        console.log("store reflects as ", activeAboutItem.get());
+        // console.log("post", idx, "set as active");
+        // console.log("store reflects as ", activeAboutItem.get());
         return;
       }
       item.classList.add("hidden");
     });
   });
+
+  // Swipe detection logic
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function handleGesture() {
+    const activeIdx = activeAboutItem.get();
+    if (touchendX < touchstartX) {
+      // Swipe left, go to next post
+      if (activeIdx < data.length - 1) {
+        activeAboutItem.set(activeIdx + 1);
+      }
+    } else if (touchendX > touchstartX) {
+      // Swipe right, go to previous post
+      if (activeIdx > 0) {
+        activeAboutItem.set(activeIdx - 1);
+      }
+    }
+  }
+
+  document.addEventListener("touchstart", (e) => {
+    touchstartX = e.changedTouches[0].screenX;
+  });
+
+  document.addEventListener("touchend", (e) => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+  });
+
+  if (navigator.userAgent === "Mobile") {
+    body.appendChild(
+      document.createTextNode(
+        "This is an iOS device. Swipe left or right to navigate between posts."
+      )
+    );
+  }
 </script>

@@ -1,20 +1,21 @@
 ---
 import "./about.css";
-import type { StoreValue } from "nanostores";
 import { activeAboutItem } from "src/data/store.ts";
 const { data } = Astro.props;
-type StoreType = StoreValue<typeof data>;
 type data = {
   id: "Title.mdx";
   slug: "title";
   body: "\nBody\n";
   collection: "about";
   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
-  render: unknown; //[AsyncFunction: render];
+  render: unknown;
 }[];
 ---
 
-<div class="about-menu">
+<div
+  class="about-menu transition-all ease-in-out duration-500 float-right sm:float-none"
+  style="position:relative;"
+>
   <!-- MENU -->
   <div class="flex flex-inline gap-2 h-fit mt-8">
     <ul class="">
@@ -23,13 +24,12 @@ type data = {
           <li
             data-slug={d.slug}
             data-idx={idx}
-            class={`about__menu__item  text-gray-600
+            class={`about__menu__item text-gray-600
             ${activeAboutItem.get() === idx ? "menu-active" : ""}
             transition-all duration-200 ease-out
             hover:text-black
             hover:cursor-pointer
-            w-fit
-            `}
+            w-fit`}
           >
             {d.data.menu_label}
           </li>
@@ -40,7 +40,7 @@ type data = {
   </div>
 </div>
 
-<script lang="ts" type="module">
+<script type="module">
   import { activeAboutItem } from "/src/data/store.ts";
 
   const menuItems = document.querySelectorAll(".about__menu__item");
@@ -51,8 +51,8 @@ type data = {
       item.classList.remove("menu-active");
       if (idx === value) {
         item.classList.add("menu-active");
-        console.log("index", idx, "set as active");
-        console.log("store reflects as ", activeAboutItem.get());
+        // console.log("index", idx, "set as active");
+        // console.log("store reflects as ", activeAboutItem.get());
       }
     });
   });
@@ -65,4 +65,58 @@ type data = {
       }
     });
   });
+
+  console.log(
+    "TOP TOP TOP",
+    document.querySelector(".about-menu").getBoundingClientRect().top
+  );
+  window.addEventListener("scroll", () => {
+    const { scrollX, scrollY } = window;
+    console.log("x", scrollX, "y", scrollY);
+    const menu = document.querySelector(".about-menu");
+    const footer = document.querySelector("footer");
+    const { height } = footer.getBoundingClientRect();
+    const { cssText } = menu.style;
+    const { top } = menu.getBoundingClientRect();
+    console.log(cssText, "top", top, "footer", height);
+  });
+  function handleScroll() {
+    if (window.innerWidth < 768) return;
+    const MENU_LIMIT_TOP = 185.09375; // Adjust this value to change when the menu snaps to fixed at the top
+    const MENU_LIMIT_BOTTOM = 100; // The distance above the footer to switch to absolute positioning
+
+    const menu = document.querySelector(".about-menu");
+    const footer = document.querySelector("footer");
+
+    if (menu && footer) {
+      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      const menuHeight = menu.offsetHeight;
+      const scrollY = window.scrollY;
+
+      // Ensure the menu is absolute if scrollY < 1
+      if (scrollY < 1) {
+        menu.style.position = "absolute";
+        menu.style.top = `${MENU_LIMIT_TOP}px`;
+      }
+      // Ensure the menu does not go below the footer, switching to absolute 100px above the footer
+      else if (scrollY + menuHeight + MENU_LIMIT_BOTTOM > footerTop) {
+        menu.style.position = "absolute";
+        menu.style.top = `${footerTop - menuHeight - MENU_LIMIT_BOTTOM}px`;
+        menu.style.bottom = "auto"; // Reset bottom if previously set
+      }
+      // When menu is within limits, keep it fixed
+      else {
+        if (menu.style.position === "absolute") {
+          const menuTop = menu.getBoundingClientRect().top + window.scrollY;
+          menu.style.position = "fixed";
+          menu.style.top = `${menuTop - scrollY}px`;
+        } else if (scrollY > MENU_LIMIT_TOP) {
+          menu.style.position = "fixed";
+          menu.style.top = `${MENU_LIMIT_TOP}px`;
+        }
+      }
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll);
 </script>

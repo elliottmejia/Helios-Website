@@ -1,7 +1,10 @@
 ---
 import Layout from "./Layout.astro";
 import Sectionhead from "src/components/sectionhead.astro";
+import { activeAboutItem } from "src/data/store.ts";
+import { getCollection } from "astro:content";
 
+const aboutPosts = await getCollection("about");
 // type AboutData = {
 //   name: string;
 //   selector: string;
@@ -12,12 +15,16 @@ type Props = {
   title: string;
 };
 const { title }: Props = Astro.props;
+console.log("ABOUT POSTS", aboutPosts[activeAboutItem.get()].data.menu_label);
 ---
 
 <Layout title={title}>
   <div class="align-left ml-8 mt-4">
-    <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-      <slot name="title">About Us</slot>
+    <h1
+      class="text-4xl lg:text-5xl font-bold lg:tracking-tight"
+      id="about-page-heading"
+    >
+      {aboutPosts[activeAboutItem.get()].data.menu_label || "About Us"}
     </h1>
     <p class="text-lg mt-4 text-slate-600">
       <h2 class="">Helios, Greek God of the Sun</h2>
@@ -34,4 +41,10 @@ const { title }: Props = Astro.props;
     <slot />
   </div>
 </Layout>
-<script></script>
+<script type="module" define:vars={{ aboutPosts }}>
+  import { activeAboutItem } from "/src/data/store.ts";
+  const heading = document.getElementById("about-page-heading");
+  activeAboutItem.subscribe((index) => {
+    heading.innerHTML = aboutPosts[index].data.menu_label;
+  });
+</script>

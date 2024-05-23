@@ -40,7 +40,7 @@ import { Picture } from "astro:assets";
 <style>
   #navbar {
     box-shadow:
-      rgb(204, 219, 232) 3px 3px 6px 0px inset,
+      rgb(212, 214, 215) 3px 3px 6px 0px inset,
       rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   }
 </style>
@@ -68,7 +68,7 @@ import { Picture } from "astro:assets";
                 <a
                   data-astro-prefetch="viewport"
                   href="/"
-                  class="text-lg flex flex-inline"
+                  class=" flex flex-inline"
                 >
                   <Picture
                     src={logoBadge}
@@ -77,8 +77,12 @@ import { Picture } from "astro:assets";
                     height={50}
                     class="mr-4 block md:hidden  left-4 top-4"
                   />
-                  <span class="text-4xl hidden md:block">Helios&nbsp</span>
-                  <span class="text-4xl block md:hidden">Helios Energy</span>
+                  <span class="text-3xl sm:text-4xl hidden md:block">
+                    Helios&nbsp
+                  </span>
+                  <span class="text-3xl sm:text-4xl block md:hidden">
+                    Helios Energy
+                  </span>
                 </a>
               </div>
             ) : (
@@ -142,9 +146,25 @@ import { Picture } from "astro:assets";
       </div>
     </div>
     <!-- NAVIGATION -->
+    <style>
+      @media screen and (max-width: 1023px) {
+        .astronav-items {
+          background: white;
+          padding: 20px;
+          position: absolute;
+          right: 0;
+          width: 154px;
+          top: 56px;
+          float: right;
+        }
+      }
+    </style>
 
     <nav
       class="astronav-items astronav-toggle w-full lg:w-auto mt-2 lg:flex lg:mt-0 hidden"
+      style="
+
+      "
     >
       <ul class="flex flex-col lg:flex-row lg:gap-3">
         {
