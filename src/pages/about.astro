@@ -34,6 +34,7 @@ const aboutPosts = await getCollection("about");
 
 <script lang="ts" type="module" define:vars={{ aboutPosts }}>
   import { activeAboutItem } from "/src/data/store.ts";
+  console.log("Active About Item Test", activeAboutItem.get());
   const data = aboutPosts;
   // make this work for all with idx
   const posts = document.querySelectorAll(".post");

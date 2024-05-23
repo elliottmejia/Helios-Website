@@ -51,8 +51,11 @@ type data = {
       item.classList.remove("menu-active");
       if (idx === value) {
         item.classList.add("menu-active");
-        // console.log("index", idx, "set as active");
-        // console.log("store reflects as ", activeAboutItem.get());
+        console.log("AboutMenu.astro\n: index", idx, "set as active");
+        console.log(
+          "AboutMenu.astro\n: store reflects as ",
+          activeAboutItem.get()
+        );
       }
     });
   });
@@ -66,6 +69,7 @@ type data = {
     });
   });
 
+  // logs for scroll logic
   // console.log(
   //   "TOP TOP TOP",
   //   document.querySelector(".about-menu").getBoundingClientRect().top
