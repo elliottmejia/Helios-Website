@@ -266,7 +266,7 @@ import { Picture } from "astro:assets";
           submenuButton &&
             submenuButton.addEventListener("click", (event) => {
               event.stopImmediatePropagation();
-              console.log("click");
+              // console.log("click");
               toggleSubmenuDropdown(event, submenu);
             });
         });
@@ -356,7 +356,7 @@ import { Picture } from "astro:assets";
     }
 
     function closeMenu(menu) {
-      console.log("closing", menu);
+      // console.log("closing", menu);
       menu.classList.remove("open");
       menu.removeAttribute("open");
       menu.setAttribute("aria-expanded", "false");
