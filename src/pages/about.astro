@@ -80,12 +80,4 @@ const aboutPosts = await getCollection("about");
     touchendX = e.changedTouches[0].screenX;
     handleGesture();
   });
-
-  if (navigator.userAgent === "Mobile") {
-    body.appendChild(
-      document.createTextNode(
-        "This is an iOS device. Swipe left or right to navigate between posts."
-      )
-    );
-  }
 </script>

@@ -11,6 +11,11 @@ const { data, active, idx } = Astro.props;
 //   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
 //   render: any; //[AsyncFunction: render]
 // };
+marked.setOptions({
+  pedantic: false,
+  // smartLists: true,
+  // smartypants: true,
+});
 const body = marked.parse(data.body);
 ---
 
