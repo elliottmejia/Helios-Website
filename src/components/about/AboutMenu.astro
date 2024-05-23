@@ -66,19 +66,19 @@ type data = {
     });
   });
 
-  console.log(
-    "TOP TOP TOP",
-    document.querySelector(".about-menu").getBoundingClientRect().top
-  );
+  // console.log(
+  //   "TOP TOP TOP",
+  //   document.querySelector(".about-menu").getBoundingClientRect().top
+  // );
   window.addEventListener("scroll", () => {
     const { scrollX, scrollY } = window;
-    console.log("x", scrollX, "y", scrollY);
+    // console.log("x", scrollX, "y", scrollY);
     const menu = document.querySelector(".about-menu");
     const footer = document.querySelector("footer");
     const { height } = footer.getBoundingClientRect();
     const { cssText } = menu.style;
     const { top } = menu.getBoundingClientRect();
-    console.log(cssText, "top", top, "footer", height);
+    // console.log(cssText, "top", top, "footer", height);
   });
   function handleScroll() {
     if (window.innerWidth < 768) return;
