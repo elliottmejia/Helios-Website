@@ -1,8 +1,10 @@
 ---
-import { marked } from "marked";
-import { activeAboutItem } from "src/data/store.ts";
+// import { marked } from "marked";
 
 const { data, active, idx } = Astro.props;
+
+import { Content } from "/src/content/about/Example-Markdown.mdx";
+
 // type data = {
 //   id: "Title.mdx";
 //   slug: "title";
@@ -11,17 +13,18 @@ const { data, active, idx } = Astro.props;
 //   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
 //   render: any; //[AsyncFunction: render]
 // };
-marked.setOptions({
-  pedantic: false,
-  // smartLists: true,
-  // smartypants: true,
-});
-const body = marked.parse(data.body);
+// marked.setOptions({
+//   pedantic: false,
+//   // smartLists: true,
+//   // smartypants: true,
+// });
+// const body = marked.parse(data.body);
 ---
 
 <div
   id={`post-${data.slug}`}
   data-idx={idx}
   class=`post md ${!active && "hidden"}`
-  set:html={body}
-/>
+>
+  <Content />
+</div>
