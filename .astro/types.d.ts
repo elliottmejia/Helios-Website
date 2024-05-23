@@ -136,15 +136,15 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"about": {
+"Title.mdx": {
+	id: "Title.mdx";
+  slug: "title";
+  body: string;
+  collection: "about";
+  data: InferEntrySchema<"about">
+} & { render(): Render[".mdx"] };
 };
 "blog": {
-"FUCK.mdx": {
-	id: "FUCK.mdx";
-  slug: "fuck";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
 "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx": {
 	id: "Solar-Savings-Navigating-Tax-Benefits-of-Going-Solar.mdx";
   slug: "solar-savings-navigating-tax-benefits-of-going-solar";
@@ -162,13 +162,6 @@ declare module 'astro:content' {
 "technologies.mdx": {
 	id: "technologies.mdx";
   slug: "technologies";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"test.mdx": {
-	id: "test.mdx";
-  slug: "test";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
