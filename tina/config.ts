@@ -18,12 +18,12 @@ export default defineConfig({
 
   build: {
     outputFolder: "./",
-    publicFolder: "/src/pages/",
+    publicFolder: "/src/tina/build/",
   },
   media: {
     tina: {
       mediaRoot: "tina_assets",
-      publicFolder: "/",
+      publicFolder: "/src/tina/assets/",
     },
   },
   search: {
