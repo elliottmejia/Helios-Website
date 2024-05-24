@@ -1,6 +1,6 @@
 ---
 import "./about.css";
-import { $activeAboutItem } from "src/shared/store.js";
+import { $activeAboutItem } from "src/store.js";
 import { atom } from "nanostores";
 type Atom = typeof atom;
 const { data } = Astro.props;
@@ -138,7 +138,7 @@ const { data } = Astro.props;
 </script>
 
 <script type="module" define:vars={{ atom }}>
-  import { $activeAboutItem } from "/src/shared/store.js";
+  import { $activeAboutItem } from "/src/store.js";
   const menuItems = document.querySelectorAll(".about__menu__item");
 
   function fallbackListenerEnable() {

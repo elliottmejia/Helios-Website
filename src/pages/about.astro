@@ -1,7 +1,7 @@
 ---
 import AboutLayout from "src/layouts/AboutLayout.astro";
 import { AboutMenu, AboutContent } from "src/components/about";
-import { $activeAboutItem } from "src/shared/store.js";
+import { $activeAboutItem } from "src/store.js";
 
 import { getCollection } from "astro:content";
 
@@ -34,7 +34,7 @@ const activeAboutItemInit = $activeAboutItem.get();
 </AboutLayout>
 
 <script type="module" define:vars={{ aboutPosts }}>
-  import { $activeAboutItem } from "/src/shared/store.js";
+  import { $activeAboutItem } from "/src/store.js";
   // make this work for all with idx
   const posts = document.querySelectorAll(".post");
 
