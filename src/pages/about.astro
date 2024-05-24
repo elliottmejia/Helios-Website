@@ -53,10 +53,9 @@ const activeAboutItemInit = $activeAboutItem.get();
     $activeAboutItem.subscribe((value) => {
       posts.forEach((item, idx) => {
         // console.log(item, idx);
-        item.classList.remove("block");
+        item.classList.remove("post-active");
         if (idx === value) {
-          item.classList.remove("hidden");
-          item.classList.add("block");
+          item.classList.add("post-active");
           console.log("post", idx, "set as active");
           console.log("store reflects as ", $activeAboutItem.get());
           return;

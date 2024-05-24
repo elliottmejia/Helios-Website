@@ -11,10 +11,13 @@ if (!file) {
 const { Content } = file;
 ---
 
-<div data-idx={idx} class=`post md ${!active && "hidden"}`>
+<div data-idx={idx} class=`post md ${active && "post-active"}`>
   <Content class="md" />
 </div>
 <style>
+  .post {
+    display: none;
+  }
   .post-active {
     display: block !important;
   }
