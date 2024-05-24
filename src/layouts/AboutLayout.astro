@@ -1,7 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import Sectionhead from "src/components/sectionhead.astro";
-import { activeAboutItem } from "store.js";
+import { $activeAboutItem } from "src/shared/store.js";
 import { getCollection } from "astro:content";
 
 const aboutPosts = await getCollection("about");
@@ -20,7 +20,7 @@ const { title }: Props = Astro.props;
       class="text-4xl lg:text-5xl font-bold lg:tracking-tight"
       id="about-page-heading"
     >
-      {aboutPosts[activeAboutItem.get()].data.menu_label || "About Us"}
+      {aboutPosts[$activeAboutItem.get()].data.menu_label || "About Us"}
     </h1>
     <p class="text-lg mt-4 text-slate-600">
       <h2 class="">Helios Energy</h2>
@@ -38,9 +38,9 @@ const { title }: Props = Astro.props;
   </div>
 </Layout>
 <script type="module" define:vars={{ aboutPosts }}>
-  import { activeAboutItem } from "/store.js";
+  import { $activeAboutItem } from "/src/shared/store.js";
   const heading = document.getElementById("about-page-heading");
-  activeAboutItem.subscribe((index) => {
+  $activeAboutItem.subscribe((index) => {
     heading.innerHTML = aboutPosts[index].data.menu_label;
   });
 </script>

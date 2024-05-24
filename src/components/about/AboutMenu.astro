@@ -1,6 +1,6 @@
 ---
 import "./about.css";
-import { activeAboutItem } from "store.js";
+import { $activeAboutItem } from "src/shared/store.js";
 import { atom } from "nanostores";
 type Atom = typeof atom;
 const { data } = Astro.props;
@@ -25,7 +25,7 @@ const { data } = Astro.props;
             data-slug={d.slug}
             data-idx={idx}
             class={`about__menu__item z-10 text-gray-600
-            ${activeAboutItem.get() === idx ? "menu-active" : ""}
+            ${$activeAboutItem.get() === idx ? "menu-active" : ""}
             transition-all duration-200 ease-out
             hover:text-black
             hover:cursor-pointer
@@ -144,7 +144,7 @@ const { data } = Astro.props;
 </script>
 
 <script type="module" define:vars={{ atom }}>
-  import { activeAboutItem } from "/store.js";
+  import { $activeAboutItem } from "/src/shared/store.js";
   const menuItems = document.querySelectorAll(".about__menu__item");
 
   function fallbackListenerEnable() {
@@ -178,12 +178,12 @@ const { data } = Astro.props;
     });
   }
 
-  if (!activeAboutItem) {
+  if (!$activeAboutItem) {
     console.error("AboutMenu.astro\n: activeAboutItem store not found");
     fallbackListenerEnable();
   } else {
     // Listen to changes in the activeAboutItem store
-    activeAboutItem.listen((value) => {
+    $activeAboutItem.listen((value) => {
       menuItems.forEach((item, idx) => {
         item.classList.remove("menu-active");
         if (idx === value) {
@@ -191,7 +191,7 @@ const { data } = Astro.props;
           console.log("AboutMenu.astro\n: index", idx, "set as active");
           console.log(
             "AboutMenu.astro\n: store reflects as ",
-            activeAboutItem.get()
+            $activeAboutItem.get()
           );
         }
       });
@@ -201,7 +201,7 @@ const { data } = Astro.props;
     menuItems.forEach((item, idx) => {
       item.addEventListener("click", () => {
         if (!item.classList.contains("menu-active")) {
-          activeAboutItem.set(idx);
+          $activeAboutItem.set(idx);
         }
       });
     });
