@@ -17,8 +17,8 @@ export default defineConfig({
   token: process.env.TINA_TOKEN,
 
   build: {
-    outputFolder: "admin",
-    publicFolder: "/",
+    outputFolder: "./",
+    publicFolder: "/src/tina",
   },
   media: {
     tina: {
