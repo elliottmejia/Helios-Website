@@ -75,16 +75,10 @@ const { data } = Astro.props;
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
-      const later = () => {
-        timeout = null;
-        if (!immediate) func.apply(this, args);
-      };
-
-      const callNow = !timeout;
       clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) func.apply(this, args);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+      // If there was no previous timeout, call the function immediately
+      if (!timeout) func.apply(this, args);
     };
   }
 
