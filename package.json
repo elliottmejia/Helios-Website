@@ -8,7 +8,7 @@
         "network": "astro dev --host",
         "check": "astro check",
         "build": "astro check && astro build",
-        "build:node": "pnpx astro build --node --root ./dist",
+        "build:node": "npx astro build --node --root ./dist",
         "preview": "astro preview",
         "astro": "astro",
         "tina": "tinacms dev -c \"astro dev --port 4321\"",
