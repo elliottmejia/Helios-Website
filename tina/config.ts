@@ -18,7 +18,7 @@ export default defineConfig({
 
   build: {
     outputFolder: "./",
-    publicFolder: "/src/tina",
+    publicFolder: "/src/pages/",
   },
   media: {
     tina: {
