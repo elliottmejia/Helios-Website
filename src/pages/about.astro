@@ -1,13 +1,14 @@
 ---
 import AboutLayout from "src/layouts/AboutLayout.astro";
 import { AboutMenu, AboutContent } from "src/components/about";
-import { activeAboutItem } from "src/store/store.js";
+import { activeAboutItem } from "store.js";
 
 import { getCollection } from "astro:content";
 
 const aboutPosts = await getCollection("about");
 
 // console.log(content);
+const activeAboutItemInit = activeAboutItem.get();
 ---
 
 <AboutLayout title="Helios | About">
@@ -21,7 +22,7 @@ const aboutPosts = await getCollection("about");
       {
         aboutPosts.map((d, idx) => {
           // console.log("idx", idx);
-          const activeContent = activeAboutItem.get() || 0;
+          const activeContent = activeAboutItemInit || 2;
           if (idx === activeContent) {
             return <AboutContent idx={idx} active={true} />;
           }
@@ -32,52 +33,66 @@ const aboutPosts = await getCollection("about");
   </div>
 </AboutLayout>
 
-<script lang="ts" type="module" define:vars={{ aboutPosts, activeAboutItem }}>
-  console.log("Active About Item Test", activeAboutItem.get());
-  const data = aboutPosts;
+<script type="module" define:vars={{ aboutPosts }}>
+  import {activeAboutItem } from "store.js";
   // make this work for all with idx
   const posts = document.querySelectorAll(".post");
-
-  activeAboutItem.subscribe((value) => {
+  
+  if (!activeAboutItem) {
     posts.forEach((item, idx) => {
-      // console.log(item, idx);
-      item.classList.remove("block");
-      if (idx === value) {
-        item.classList.remove("hidden");
-        item.classList.add("block");
-        console.log("post", idx, "set as active");
-        console.log("store reflects as ", activeAboutItem.get());
-        return;
-      }
-      item.classList.add("hidden");
+      item.addEventListener("about-menu-click", (e) => {
+        const itemIdx = parseInt(item.getAttribute("data-idx"), 10);
+        item.classList.remove("block");
+        if (e.detail.val === itemIdx) {
+          item.classList.remove("hidden");
+          item.classList.add("block");
+        } else {
+          item.classList.remove("post-active");
+        }
+      });
     });
-  });
+  } else {
+    activeAboutItem.subscribe((value) => {
+      posts.forEach((item, idx) => {
+        // console.log(item, idx);
+        item.classList.remove("block");
+        if (idx === value) {
+          item.classList.remove("hidden");
+          item.classList.add("block");
+          console.log("post", idx, "set as active");
+          console.log("store reflects as ", activeAboutItem.get());
+          return;
+        }
+        item.classList.add("hidden");
+      });
+    });
 
-  // Swipe detection logic
-  let touchstartX = 0;
-  let touchendX = 0;
+    // Swipe detection logic
+    let touchstartX = 0;
+    let touchendX = 0;
 
-  function handleGesture() {
-    const activeIdx = activeAboutItem.get();
-    if (touchendX < touchstartX) {
-      // Swipe left, go to next post
-      if (activeIdx < data.length - 1) {
-        activeAboutItem.set(activeIdx + 1);
-      }
-    } else if (touchendX > touchstartX) {
-      // Swipe right, go to previous post
-      if (activeIdx > 0) {
-        activeAboutItem.set(activeIdx - 1);
+    function handleGesture() {
+      const activeIdx = activeAboutItem.get();
+      if (touchendX < touchstartX) {
+        // Swipe left, go to next post
+        if (activeIdx < posts.length - 1) {
+          activeAboutItem.set(activeIdx + 1);
+        }
+      } else if (touchendX > touchstartX) {
+        // Swipe right, go to previous post
+        if (activeIdx > 0) {
+          activeAboutItem.set(activeIdx - 1);
+        }
       }
     }
+
+    document.addEventListener("touchstart", (e) => {
+      touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener("touchend", (e) => {
+      touchendX = e.changedTouches[0].screenX;
+      handleGesture();
+    });
   }
-
-  document.addEventListener("touchstart", (e) => {
-    touchstartX = e.changedTouches[0].screenX;
-  });
-
-  document.addEventListener("touchend", (e) => {
-    touchendX = e.changedTouches[0].screenX;
-    handleGesture();
-  });
 </script>

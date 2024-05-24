@@ -1,6 +1,6 @@
 ---
 import "./about.css";
-import { activeAboutItem } from "src/store/store.js";
+import { activeAboutItem } from "store.js";
 import { atom } from "nanostores";
 type Atom = typeof atom;
 const { data } = Astro.props;
@@ -144,16 +144,13 @@ const { data } = Astro.props;
 </script>
 
 <script type="module" define:vars={{ atom }}>
-  import { activeAboutItem } from "/src/store/store.js";
-
+  import { activeAboutItem } from "/store.js";
   const menuItems = document.querySelectorAll(".about__menu__item");
 
-  // ENDSCROLL
-  // STARTCLICK
-
   function fallbackListenerEnable() {
-    const val = 0;
-
+    console.warn(
+      "active about item not found, falling back to event emissions"
+    );
     // Function to create and dispatch the custom event
     function dispatchClickEvent(item, val) {
       const event = new CustomEvent("about-menu-click", {
@@ -165,12 +162,10 @@ const { data } = Astro.props;
     menuItems.forEach((item, idx) => {
       // Add a data-idx attribute to each menu item
       item.setAttribute("data-idx", idx);
-
       // Add a click event listener to each menu item
       item.addEventListener("click", () => {
         dispatchClickEvent(item, idx);
       });
-
       // Add a custom event listener to handle the custom event
       item.addEventListener("about-menu-click", (e) => {
         const itemIdx = parseInt(item.getAttribute("data-idx"), 10);
@@ -183,14 +178,7 @@ const { data } = Astro.props;
     });
   }
 
-  // Check if the activeAboutItem store is not available
   if (!activeAboutItem) {
-    console.error("AboutMenu.astro: activeAboutItem store not found");
-    fallbackListenerEnable();
-    return;
-  }
-
-  if (activeAboutItem) {
     console.error("AboutMenu.astro\n: activeAboutItem store not found");
     fallbackListenerEnable();
   } else {
