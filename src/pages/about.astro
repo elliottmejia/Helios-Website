@@ -1,7 +1,7 @@
 ---
 import AboutLayout from "src/layouts/AboutLayout.astro";
 import { AboutMenu, AboutContent } from "src/components/about";
-import { activeAboutItem } from "src/store.js";
+import { activeAboutItem } from "src/store/store.js";
 
 import { getCollection } from "astro:content";
 
@@ -33,7 +33,7 @@ const aboutPosts = await getCollection("about");
 </AboutLayout>
 
 <script lang="ts" type="module" define:vars={{ aboutPosts }}>
-  import { activeAboutItem } from "/src/store.js";
+  import { activeAboutItem } from "/src/store/store.js";
   console.log("Active About Item Test", activeAboutItem.get());
   const data = aboutPosts;
   // make this work for all with idx

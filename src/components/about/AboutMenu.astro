@@ -1,6 +1,6 @@
 ---
 import "./about.css";
-import { activeAboutItem } from "src/store.js";
+import { activeAboutItem } from "src/store/store.js";
 const { data } = Astro.props;
 type data = {
   id: "Title.mdx";
@@ -41,7 +41,7 @@ type data = {
 </div>
 
 <script type="module">
-  import { activeAboutItem } from "/src/store.js";
+  import { activeAboutItem } from "/src/store/store.js";
 
   const menuItems = document.querySelectorAll(".about__menu__item");
 
