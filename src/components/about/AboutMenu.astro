@@ -40,9 +40,7 @@ type data = {
   </div>
 </div>
 
-<script type="module">
-  import { activeAboutItem } from "/src/store/store.js";
-
+<script type="module" define:vars={{ activeAboutItem }}>
   const menuItems = document.querySelectorAll(".about__menu__item");
 
   // Listen to changes in the activeAboutItem store
