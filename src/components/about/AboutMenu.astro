@@ -1,21 +1,21 @@
 ---
 import "./about.css";
 import { activeAboutItem } from "src/store/store.js";
+import { atom } from "nanostores";
+type Atom = typeof atom;
 const { data } = Astro.props;
-type data = {
-  id: "Title.mdx";
-  slug: "title";
-  body: "\nBody\n";
-  collection: "about";
-  data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
-  render: unknown;
-}[];
+// type data = {
+//   id: "Title.mdx";
+//   slug: "title";
+//   body: "\nBody\n";
+//   collection: "about";
+//   data: { title: "Title"; snippet: "Snippet"; menu_label: "Menu Label" };
+//   render: unknown;
+// }[];
 ---
 
-<div
-  class="about-menu transition-all ease-in-out duration-500 float-right sm:float-none"
-  style="position:relative;"
->
+<div class="about-menu
+   float-right sm:float-none" style="position:relative;">
   <!-- MENU -->
   <div class="flex flex-inline gap-2 h-fit mt-8">
     <ul class="">
@@ -24,7 +24,7 @@ type data = {
           <li
             data-slug={d.slug}
             data-idx={idx}
-            class={`about__menu__item text-gray-600
+            class={`about__menu__item z-10 text-gray-600
             ${activeAboutItem.get() === idx ? "menu-active" : ""}
             transition-all duration-200 ease-out
             hover:text-black
@@ -36,88 +36,186 @@ type data = {
         ))
       }
     </ul>
-    <div class="border-r border-black"></div>
+    <div class="border-r border-black" id="menu-border"></div>
   </div>
 </div>
-
-<script type="module" define:vars={{ activeAboutItem }}>
-  const menuItems = document.querySelectorAll(".about__menu__item");
-
-  // Listen to changes in the activeAboutItem store
-  activeAboutItem.listen((value) => {
-    menuItems.forEach((item, idx) => {
-      item.classList.remove("menu-active");
-      if (idx === value) {
-        item.classList.add("menu-active");
-        console.log("AboutMenu.astro\n: index", idx, "set as active");
-        console.log(
-          "AboutMenu.astro\n: store reflects as ",
-          activeAboutItem.get()
-        );
-      }
-    });
-  });
-
-  // Add click event listeners to menu items
-  menuItems.forEach((item, idx) => {
-    item.addEventListener("click", () => {
-      if (!item.classList.contains("menu-active")) {
-        activeAboutItem.set(idx);
-      }
-    });
-  });
-
+<!-- SCROLL LOGIC -->
+<script type="module">
   // logs for scroll logic
+  //
   // console.log(
   //   "TOP TOP TOP",
   //   document.querySelector(".about-menu").getBoundingClientRect().top
   // );
+
   // window.addEventListener("scroll", () => {
-  // console.log("x", scrollX, "y", scrollY);
+  //   console.log("x", scrollX, "y", scrollY);
   //   const menu = document.querySelector(".about-menu");
-  //   const footer = document.querySelector("footer");
-  //   const { height } = footer.getBoundingClientRect();
+  //   const footerHeight = document.querySelector("footer").offsetHeight;
   //   const { cssText } = menu.style;
   //   const { top } = menu.getBoundingClientRect();
-  // console.log(cssText, "top", top, "footer", height);
+  //   console.log(
+  //     cssText,
+  //     "top",
+  //     top,
+  //     "bodyHeight",
+  //     document.getElementById("body").getBoundingClientRect().height,
+  //     "footer Height",
+  //     footerHeight,
+  //     "body - footer",
+  //     document.getElementById("body").getBoundingClientRect().height -
+  //       footerHeight,
+  //     "menu position",
+  //     menu.getBoundingClientRect
+  //   );
   // });
-  function handleScroll() {
-    if (window.innerWidth < 768) return;
-    const MENU_LIMIT_TOP = 185.09375; // Adjust this value to change when the menu snaps to fixed at the top
-    const MENU_LIMIT_BOTTOM = 100; // The distance above the footer to switch to absolute positioning
+  //
+  // scroll logic
+
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      const later = () => {
+        timeout = null;
+        if (!immediate) func.apply(this, args);
+      };
+
+      const callNow = !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+
+      if (callNow) func.apply(this, args);
+    };
+  }
+
+  const handleScroll = debounce(function () {
+    if (window.innerWidth < 768) {
+      return;
+    }
+    function setMenu(top, position) {
+      menu.style.top = `${top}px`;
+      menu.style.position = position;
+    }
 
     const menu = document.querySelector(".about-menu");
     const footer = document.querySelector("footer");
+    const footerHeight = footer.offsetHeight;
+    const MENU_LIMIT_TOP = 189.9; // Adjust this value to change when the menu snaps to fixed at the top
+    const MENU_LIMIT_BOTTOM = 200; // The distance above the footer to switch to absolute positioning
+
+    const bodyHeight = document
+      .getElementById("body")
+      .getBoundingClientRect().height;
 
     if (menu && footer) {
-      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
-      const menuHeight = menu.offsetHeight;
+      const windowHeight = window.outerHeight;
       const scrollY = window.scrollY;
 
-      // Ensure the menu is absolute if scrollY < 1
+      // if not scrolled
       if (scrollY < 1) {
-        menu.style.position = "absolute";
-        menu.style.top = `${MENU_LIMIT_TOP}px`;
+        setMenu(0, "relative");
+        return;
       }
       // Ensure the menu does not go below the footer, switching to absolute 100px above the footer
-      else if (scrollY + menuHeight + MENU_LIMIT_BOTTOM > footerTop) {
-        menu.style.position = "absolute";
-        menu.style.top = `${footerTop - menuHeight - MENU_LIMIT_BOTTOM}px`;
-        menu.style.bottom = "auto"; // Reset bottom if previously set
+      else if (scrollY + 400 > bodyHeight - footerHeight) {
+        // if (
+        //   menu.style.position === "absolute" ||
+        //   menu.style.position === "relative"
+        // ) {
+        //   return;
+        // }
+        setMenu(
+          scrollY - menu.getBoundingClientRect().top + MENU_LIMIT_BOTTOM,
+          "relative"
+        );
       }
       // When menu is within limits, keep it fixed
       else {
-        if (menu.style.position === "absolute") {
-          const menuTop = menu.getBoundingClientRect().top + window.scrollY;
-          menu.style.position = "fixed";
-          menu.style.top = `${menuTop - scrollY}px`;
-        } else if (scrollY > MENU_LIMIT_TOP) {
-          menu.style.position = "fixed";
-          menu.style.top = `${MENU_LIMIT_TOP}px`;
-        }
+        setMenu(MENU_LIMIT_TOP, "fixed");
       }
     }
+  });
+  async function setupEventListeners() {
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
   }
 
-  window.addEventListener("scroll", handleScroll);
+  setupEventListeners();
+</script>
+
+<script type="module" define:vars={{ atom }}>
+  import { activeAboutItem } from "/src/store/store.js";
+
+  const menuItems = document.querySelectorAll(".about__menu__item");
+
+  // ENDSCROLL
+  // STARTCLICK
+
+  function fallbackListenerEnable() {
+    const val = 0;
+
+    // Function to create and dispatch the custom event
+    function dispatchClickEvent(item, val) {
+      const event = new CustomEvent("about-menu-click", {
+        detail: { val },
+      });
+      item.dispatchEvent(event);
+    }
+
+    menuItems.forEach((item, idx) => {
+      // Add a data-idx attribute to each menu item
+      item.setAttribute("data-idx", idx);
+
+      // Add a click event listener to each menu item
+      item.addEventListener("click", () => {
+        dispatchClickEvent(item, idx);
+      });
+
+      // Add a custom event listener to handle the custom event
+      item.addEventListener("about-menu-click", (e) => {
+        const itemIdx = parseInt(item.getAttribute("data-idx"), 10);
+        if (e.detail.val === itemIdx) {
+          item.classList.add("menu-active");
+        } else {
+          item.classList.remove("menu-active");
+        }
+      });
+    });
+  }
+
+  // Check if the activeAboutItem store is not available
+  if (!activeAboutItem) {
+    console.error("AboutMenu.astro: activeAboutItem store not found");
+    fallbackListenerEnable();
+    return;
+  }
+
+  if (activeAboutItem) {
+    console.error("AboutMenu.astro\n: activeAboutItem store not found");
+    fallbackListenerEnable();
+  } else {
+    // Listen to changes in the activeAboutItem store
+    activeAboutItem.listen((value) => {
+      menuItems.forEach((item, idx) => {
+        item.classList.remove("menu-active");
+        if (idx === value) {
+          item.classList.add("menu-active");
+          console.log("AboutMenu.astro\n: index", idx, "set as active");
+          console.log(
+            "AboutMenu.astro\n: store reflects as ",
+            activeAboutItem.get()
+          );
+        }
+      });
+    });
+
+    // Add click event listeners to menu items
+    menuItems.forEach((item, idx) => {
+      item.addEventListener("click", () => {
+        if (!item.classList.contains("menu-active")) {
+          activeAboutItem.set(idx);
+        }
+      });
+    });
+  }
 </script>
