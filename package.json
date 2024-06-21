@@ -13,7 +13,7 @@
         "astro": "astro",
         "tina": "tinacms dev -c \"astro dev --port 4321\"",
         "tinabuild": "tinacms build -c \"astro build\"",
-        "deploy": "tinacms build -c \"astro build\" && vercel --prod"
+        "deploy": "pnpm rebuild better-sqlite3 && tinacms build -c \"astro build\" && vercel --prod"
     },
     "dependencies": {
         "@astrojs/check": "^0.7.0",
@@ -57,6 +57,7 @@
         "short-uuid": "^4.2.2",
         "tailwindcss": "^3.3.3",
         "tinacms": "^1.6.3",
+        "@tinacms/cli": "^1.5.45",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
