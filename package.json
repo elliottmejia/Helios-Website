@@ -12,7 +12,8 @@
         "preview": "astro preview",
         "astro": "astro",
         "tina": "tinacms dev -c \"astro dev --port 4321\"",
-        "tinabuild": "tinacms build -c \"astro build\""
+        "tinabuild": "tinacms build -c \"astro build\"",
+        "deploy": "tinacms build -c \"astro build\" && vercel --prod",
     },
     "dependencies": {
         "@astrojs/check": "^0.7.0",
