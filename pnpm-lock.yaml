@@ -10,7 +10,7 @@ dependencies:
     version: 0.7.0(prettier-plugin-astro@0.12.3)(prettier@3.3.2)(typescript@5.5.2)
   '@astrojs/db':
     specifier: ^0.11.4
-    version: 0.11.6(@types/react@18.3.3)(react@18.3.1)
+    version: 0.11.6(@types/react@18.3.3)(better-sqlite3@9.6.0)(react@18.3.1)
   '@astrojs/mdx':
     specifier: ^3.0.1
     version: 3.1.1(astro@4.11.0)
@@ -83,6 +83,9 @@ dependencies:
   astro-tina:
     specifier: ^0.1.2
     version: 0.1.2(astro@4.11.0)
+  better-sqlite3:
+    specifier: ^9.6.0
+    version: 9.6.0
   graphql-ws:
     specifier: ^5.16.0
     version: 5.16.0(graphql@16.9.0)
@@ -241,7 +244,7 @@ packages:
     resolution: {integrity: sha512-yrpD1WRGqsJwANaDIdtHo+YVjvIOFAjC83lu5qENIgrafwZcJgSXDuwVMXOgok4tFzpeKLsFQ6c3FoUdloLWBQ==}
     dev: false
 
-  /@astrojs/db@0.11.6(@types/react@18.3.3)(react@18.3.1):
+  /@astrojs/db@0.11.6(@types/react@18.3.3)(better-sqlite3@9.6.0)(react@18.3.1):
     resolution: {integrity: sha512-uDypExJu9szjieIKvoSpu57NCwQI0q9cW71jEuFND22T7TM+hnBshWnmYSb783Z8a5mdv5CF/krLlC7+jeAJ+Q==}
     dependencies:
       '@astrojs/studio': 0.1.0
@@ -249,7 +252,7 @@ packages:
       async-listen: 3.0.1
       ci-info: 4.0.0
       deep-diff: 1.0.2
-      drizzle-orm: 0.31.2(@libsql/client@0.6.2)(@types/react@18.3.3)(react@18.3.1)
+      drizzle-orm: 0.31.2(@libsql/client@0.6.2)(@types/react@18.3.3)(better-sqlite3@9.6.0)(react@18.3.1)
       github-slugger: 2.0.0
       kleur: 4.1.5
       nanoid: 5.0.7
@@ -8950,6 +8953,14 @@ packages:
       prebuild-install: 7.1.2
     dev: false
 
+  /better-sqlite3@9.6.0:
+    resolution: {integrity: sha512-yR5HATnqeYNVnkaUTf4bOP2dJSnyhP4puJN/QPRyx4YkBEEUxib422n2XzPqDEHjQQqazoYoADdAm5vE15+dAQ==}
+    requiresBuild: true
+    dependencies:
+      bindings: 1.5.0
+      prebuild-install: 7.1.2
+    dev: false
+
   /binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
@@ -10033,7 +10044,7 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /drizzle-orm@0.31.2(@libsql/client@0.6.2)(@types/react@18.3.3)(react@18.3.1):
+  /drizzle-orm@0.31.2(@libsql/client@0.6.2)(@types/react@18.3.3)(better-sqlite3@9.6.0)(react@18.3.1):
     resolution: {integrity: sha512-QnenevbnnAzmbNzQwbhklvIYrDE8YER8K7kSrAWQSV1YvFCdSQPzj+jzqRdTSsV2cDqSpQ0NXGyL1G9I43LDLg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -10118,6 +10129,7 @@ packages:
     dependencies:
       '@libsql/client': 0.6.2
       '@types/react': 18.3.3
+      better-sqlite3: 9.6.0
       react: 18.3.1
     dev: false
 
