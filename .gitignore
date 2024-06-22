@@ -4,6 +4,8 @@ dist/
 .output/
 .vercel
 
+package-stable.json
+
 # dependencies
 node_modules/
 
