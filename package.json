@@ -11,7 +11,7 @@
         "preview": "astro preview",
         "astro": "astro",
         "tina": "tinacms dev -c \"astro dev --port 4321\"",
-        "tinabuild": "pnpm i & tinacms build -c \"astro build\""
+        "tinabuild": "pnpm tinacms build -c \"astro build\""
     },
     "dependencies": {
         "@astrojs/check": "^0.5.10",
