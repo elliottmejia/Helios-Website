@@ -4,6 +4,7 @@
     "version": "0.1.0",
     "private": false,
     "scripts": {
+        "prodinstall": "pnpm install --no-frozen-lockfile",
         "start": "astro dev",
         "network": "astro dev --host",
         "build": "astro check && astro build",
