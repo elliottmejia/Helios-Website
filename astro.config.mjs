@@ -30,7 +30,7 @@ export default defineConfig({
       },
     }),
   ],
-  output: "server",
+  output: "hybrid",
   adapter: vercel(),
   markdown: {
     remarkPlugins: [remarkReadingTime],
