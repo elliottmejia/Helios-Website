@@ -14,7 +14,7 @@
         "tina": "tinacms dev -c \"astro dev --port 4321\"",
         "tinabuild": "tinacms build -c \"astro build\"",
         "deploy": " tinacms build -c \"astro build\" && vercel --prod",
-        "postinstall": "npm rebuild better-sqlite3"
+        "postinstall": "pnpm rebuild better-sqlite3"
     },
     "dependencies": {
         "@astrojs/check": "^0.7.0",
