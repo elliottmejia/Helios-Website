@@ -6,8 +6,9 @@ import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
 import partytown from "@astrojs/partytown";
 import tina from "astro-tina";
-
 import { remarkReadingTime } from "./remark-reading-time.mjs";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,8 +31,8 @@ export default defineConfig({
       },
     }),
   ],
-  output: "hybrid",
-  adapter: vercel(),
+  output: "server",
+  adapter: netlify(),
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
